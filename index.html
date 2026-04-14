@@ -39,6 +39,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .mbtn{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:7px 16px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:var(--muted);cursor:pointer;transition:all .15s}
 .mbtn:hover{background:rgba(0,200,240,.08);border-color:rgba(0,200,240,.3);color:var(--accent)}
 .mbtn.active{background:rgba(0,200,240,.12);border-color:rgba(0,200,240,.5);color:var(--accent);box-shadow:0 0 14px rgba(0,200,240,.15)}
+.mbtn.closed{color:rgba(154,175,196,.5);border-color:rgba(255,255,255,.05);font-size:14px}
+.mbtn.closed:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:var(--muted)}
 .mpanel{display:none}.mpanel.active{display:block}
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;text-decoration:none;color:var(--text);transition:transform .18s,box-shadow .18s;display:block}
@@ -101,7 +103,7 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
 <!-- NAVEGAÇÃO PRINCIPAL -->
 <div style="max-width:860px;margin:0 auto;padding:0 24px 8px;display:flex;gap:10px">
   <button class="main-tab active" onclick="showSection('resultados')" id="mtab-resultados">📊 Resultados</button>
-  <button class="main-tab" onclick="showSection('documentos')" id="mtab-documentos">📁 Documentos</button>
+  <button class="main-tab" onclick="showSection('documentos')" id="mtab-documentos">📦 Produto</button>
 </div>
 
 <!-- SECÇÃO RESULTADOS -->
@@ -109,9 +111,9 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
 <div class="hist-section">
   <div class="hist-label">📅 Seleccionar Período</div>
   <div class="month-nav">
-    <button class="mbtn" onclick="showMonth('202601')" id="btn-202601">202601</button>
-    <button class="mbtn" onclick="showMonth('202602')" id="btn-202602">202602</button>
-    <button class="mbtn" onclick="showMonth('202603')" id="btn-202603">202603</button>
+    <button class="mbtn  closed" onclick="showMonth('202601')" id="btn-202601">✓ 202601</button>
+    <button class="mbtn  closed" onclick="showMonth('202602')" id="btn-202602">✓ 202602</button>
+    <button class="mbtn  closed" onclick="showMonth('202603')" id="btn-202603">✓ 202603</button>
     <button class="mbtn  active" onclick="showMonth('202604')" id="btn-202604">202604</button>
   </div>
   <div class="divider"></div>
@@ -199,18 +201,10 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
         <div class="dc-icon">📺</div><div class="dc-label">Talk Light</div>
         <div class="dc-sub">Light atual LR</div>
       </a>
-      <div class="doc-card soon" style="--dc:#555">
-        <div class="dc-icon">☎️</div><div class="dc-label">Telefone</div>
-        <div class="dc-sub">Em breve</div>
-      </div>
       <a href="docs/movel-blm.pdf" target="_blank" class="doc-card" style="--dc:#e91e8c">
         <div class="dc-icon">📱</div><div class="dc-label">Telemóvel</div>
         <div class="dc-sub">Móvel / BLM / LR</div>
       </a>
-      <div class="doc-card soon" style="--dc:#555">
-        <div class="dc-icon">📶</div><div class="dc-label">Net Móvel</div>
-        <div class="dc-sub">Em breve</div>
-      </div>
       <a href="docs/energia.pdf" target="_blank" class="doc-card" style="--dc:#00c853">
         <div class="dc-icon">⚡</div><div class="dc-label">MEO Energia</div>
         <div class="dc-sub">Códigos D2D</div>
@@ -221,6 +215,14 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
   <!-- CAMPANHAS -->
   <div id="doc-campanhas" class="doc-panel" style="display:none">
     <div class="doc-grid">
+      <div class="doc-card soon" style="--dc:#555">
+        <div class="dc-icon">☎️</div><div class="dc-label">Telefone</div>
+        <div class="dc-sub">Em breve</div>
+      </div>
+      <div class="doc-card soon" style="--dc:#555">
+        <div class="dc-icon">📶</div><div class="dc-label">Net Móvel</div>
+        <div class="dc-sub">Em breve</div>
+      </div>
       <div class="doc-card soon" style="--dc:#c6e600">
         <div class="dc-icon">📺</div><div class="dc-label">Smart TVs</div>
         <div class="dc-sub">Em breve</div>
