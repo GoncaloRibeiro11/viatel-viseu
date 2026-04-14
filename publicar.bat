@@ -26,7 +26,7 @@ git push
 echo.
 echo  ============================================
 echo   Site actualizado com sucesso!
-echo   https://goncaloribeiro11.github.io/viatel-viseu/
+echo   https://goncaloribeiro11.github.io/resultados-viatel/
 echo  ============================================
 echo.
 pause
