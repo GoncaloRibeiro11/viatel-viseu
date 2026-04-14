@@ -58,7 +58,26 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .divider{height:1px;background:var(--border);max-width:860px;margin:0 auto 32px}
 .footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);letter-spacing:1px}
 .footer span{color:var(--accent)}
-@media(max-width:600px){.header{padding:16px 20px}.hero{padding:32px 20px 20px}.cards{grid-template-columns:1fr}.hist-section{padding:0 16px 40px}}
+/* ── NAVEGAÇÃO PRINCIPAL ── */
+.main-tab{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:8px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s}
+.main-tab:hover{background:rgba(0,200,240,.08);border-color:rgba(0,200,240,.3);color:var(--accent)}
+.main-tab.active{background:rgba(0,200,240,.12);border-color:rgba(0,200,240,.5);color:var(--accent);box-shadow:0 0 14px rgba(0,200,240,.15)}
+/* ── DOC CARDS ── */
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;margin-bottom:32px}
+.doc-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:22px 12px;border-radius:16px;border:2px solid rgba(var(--dc-rgb,51,51,255),.35);background:rgba(var(--dc-rgb,51,51,255),.07);text-decoration:none;color:var(--text);transition:transform .15s,box-shadow .15s;cursor:pointer;text-align:center}
+.doc-card:not(.soon):hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.4);border-color:rgba(var(--dc-rgb,51,51,255),.7)}
+.doc-card.soon{opacity:.45;cursor:default}
+.dc-icon{font-size:32px;line-height:1}
+.dc-label{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#eef3fa}
+.dc-sub{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+/* cores via custom property */
+a.doc-card[style*="--dc:#0033ff"]{border-color:rgba(0,51,255,.4);background:rgba(0,51,255,.09)}
+a.doc-card[style*="--dc:#0033ff"]:hover{border-color:rgba(0,51,255,.8);box-shadow:0 8px 32px rgba(0,51,255,.2)}
+a.doc-card[style*="--dc:#e91e8c"]{border-color:rgba(233,30,140,.4);background:rgba(233,30,140,.09)}
+a.doc-card[style*="--dc:#e91e8c"]:hover{border-color:rgba(233,30,140,.8);box-shadow:0 8px 32px rgba(233,30,140,.2)}
+a.doc-card[style*="--dc:#00c853"]{border-color:rgba(0,200,83,.4);background:rgba(0,200,83,.09)}
+a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shadow:0 8px 32px rgba(0,200,83,.2)}
+@media(max-width:600px){.header{padding:16px 20px}.hero{padding:32px 20px 20px}.cards{grid-template-columns:1fr}.hist-section{padding:0 16px 40px}.doc-grid{grid-template-columns:repeat(3,1fr)}}
 </style></head><body>
 <!-- LOGIN OVERLAY -->
 <div id="login-overlay">
@@ -79,6 +98,14 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   <div class="hero-title">RESULTADOS<br>COMERCIAIS</div>
   <div class="hero-sub">Coordenação Gonçalo Ribeiro &nbsp;·&nbsp; Abril 2026</div>
 </div>
+<!-- NAVEGAÇÃO PRINCIPAL -->
+<div style="max-width:860px;margin:0 auto;padding:0 24px 8px;display:flex;gap:10px">
+  <button class="main-tab active" onclick="showSection('resultados')" id="mtab-resultados">📊 Resultados</button>
+  <button class="main-tab" onclick="showSection('documentos')" id="mtab-documentos">📁 Documentos</button>
+</div>
+
+<!-- SECÇÃO RESULTADOS -->
+<div id="sec-resultados" class="main-sec">
 <div class="hist-section">
   <div class="hist-label">📅 Seleccionar Período</div>
   <div class="month-nav">
@@ -146,7 +173,72 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   </div>
 </div>
 </div>
-<div class="footer">Viatel Viseu &nbsp;·&nbsp; Coordenação <span>Gonçalo Ribeiro</span> &nbsp;·&nbsp; Actualizado 14/04/2026</div>
+</div>
+
+<!-- SECÇÃO DOCUMENTOS -->
+<div id="sec-documentos" class="main-sec" style="display:none">
+<div class="hist-section">
+  <!-- sub-tabs -->
+  <div class="month-nav" style="margin-bottom:28px">
+    <button class="mbtn active" onclick="showDoc('tarifarios')" id="dtab-tarifarios">Tarifários Mercado</button>
+    <button class="mbtn" onclick="showDoc('campanhas')" id="dtab-campanhas">Campanhas</button>
+  </div>
+
+  <!-- TARIFÁRIOS MERCADO -->
+  <div id="doc-tarifarios" class="doc-panel active">
+    <div class="doc-grid">
+      <a href="docs/fibra.pdf" target="_blank" class="doc-card" style="--dc:#0033ff">
+        <div class="dc-icon">🔌</div><div class="dc-label">Fibra</div>
+        <div class="dc-sub">Códigos D2D</div>
+      </a>
+      <a href="docs/satelite.pdf" target="_blank" class="doc-card" style="--dc:#0033ff">
+        <div class="dc-icon">📡</div><div class="dc-label">Satélite</div>
+        <div class="dc-sub">Códigos D2D</div>
+      </a>
+      <a href="docs/light-lr.pdf" target="_blank" class="doc-card" style="--dc:#0033ff">
+        <div class="dc-icon">📺</div><div class="dc-label">Talk Light</div>
+        <div class="dc-sub">Light atual LR</div>
+      </a>
+      <div class="doc-card soon" style="--dc:#555">
+        <div class="dc-icon">☎️</div><div class="dc-label">Telefone</div>
+        <div class="dc-sub">Em breve</div>
+      </div>
+      <a href="docs/movel-blm.pdf" target="_blank" class="doc-card" style="--dc:#e91e8c">
+        <div class="dc-icon">📱</div><div class="dc-label">Telemóvel</div>
+        <div class="dc-sub">Móvel / BLM / LR</div>
+      </a>
+      <div class="doc-card soon" style="--dc:#555">
+        <div class="dc-icon">📶</div><div class="dc-label">Net Móvel</div>
+        <div class="dc-sub">Em breve</div>
+      </div>
+      <a href="docs/energia.pdf" target="_blank" class="doc-card" style="--dc:#00c853">
+        <div class="dc-icon">⚡</div><div class="dc-label">MEO Energia</div>
+        <div class="dc-sub">Códigos D2D</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- CAMPANHAS -->
+  <div id="doc-campanhas" class="doc-panel" style="display:none">
+    <div class="doc-grid">
+      <div class="doc-card soon" style="--dc:#c6e600">
+        <div class="dc-icon">📺</div><div class="dc-label">Smart TVs</div>
+        <div class="dc-sub">Em breve</div>
+      </div>
+      <div class="doc-card soon" style="--dc:#c6e600">
+        <div class="dc-icon">💻</div><div class="dc-label">Equipamentos</div>
+        <div class="dc-sub">Em breve</div>
+      </div>
+      <div class="doc-card soon" style="--dc:#e91e8c">
+        <div class="dc-icon">📦</div><div class="dc-label">Boxless</div>
+        <div class="dc-sub">Em breve</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="footer">Viatel Viseu &nbsp;·&nbsp; Coordenação <span>Gonçalo Ribeiro</span> &nbsp;·&nbsp; Actualizado 15/04/2026</div>
 <script>
 /* ── AUTENTICAÇÃO ── */
 const PWD_HASH = '7a57c38ddb84d7e09c2ef086ebaf852962050cad186420dfbc751923cdb875cb';
@@ -172,6 +264,20 @@ document.getElementById('pwd-input').addEventListener('keydown', e => { if (e.ke
 // Verificar sessão ao carregar
 if (sessionStorage.getItem('vv_auth') === PWD_HASH) {
   document.getElementById('login-overlay').classList.add('hidden');
+}
+/* ── NAVEGAÇÃO PRINCIPAL ── */
+function showSection(sec){
+  document.querySelectorAll('.main-sec').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('sec-'+sec).style.display='block';
+  document.getElementById('mtab-'+sec).classList.add('active');
+}
+/* ── SUB-TABS DOCUMENTOS ── */
+function showDoc(tab){
+  document.querySelectorAll('.doc-panel').forEach(p=>p.style.display='none');
+  document.querySelectorAll('[id^="dtab-"]').forEach(t=>t.classList.remove('active'));
+  document.getElementById('doc-'+tab).style.display='block';
+  document.getElementById('dtab-'+tab).classList.add('active');
 }
 /* ── NAVEGAÇÃO MESES ── */
 function showMonth(ym){
