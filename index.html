@@ -7,19 +7,6 @@
 :root{--bg:#060b12;--surface:#0d1825;--border:rgba(255,255,255,.08);--accent:#00c8f0;--accent2:#ff5f2e;--gold:#f5c518;--green:#00e676;--text:#eef3fa;--muted:#9aafc4}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;background-image:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(0,200,240,.10) 0%,transparent 60%)}
-/* ── LOGIN OVERLAY ── */
-#login-overlay{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;background-image:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(0,200,240,.12) 0%,transparent 60%)}
-#login-overlay.hidden{display:none}
-.login-box{background:var(--surface);border:1px solid rgba(0,200,240,.2);border-radius:24px;padding:48px 40px;width:100%;max-width:380px;box-shadow:0 32px 80px rgba(0,0,0,.5),0 0 0 1px rgba(0,200,240,.05);text-align:center}
-.login-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:5px;margin-bottom:4px}.login-logo em{color:var(--accent);font-style:normal}
-.login-sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:36px}
-.login-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;display:block;text-align:left;margin-bottom:8px}
-.login-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;transition:border .15s;letter-spacing:2px}
-.login-input:focus{border-color:rgba(0,200,240,.5);box-shadow:0 0 0 3px rgba(0,200,240,.08)}
-.login-btn{margin-top:20px;width:100%;background:linear-gradient(135deg,rgba(0,200,240,.2),rgba(0,200,240,.08));border:1px solid rgba(0,200,240,.4);border-radius:12px;padding:14px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:var(--accent);cursor:pointer;transition:all .15s}
-.login-btn:hover{background:linear-gradient(135deg,rgba(0,200,240,.3),rgba(0,200,240,.15));box-shadow:0 0 24px rgba(0,200,240,.2)}
-.login-error{margin-top:14px;font-size:12px;color:#ff4444;letter-spacing:1px;min-height:18px;display:none}
-.login-error.show{display:block}
 .header{display:flex;align-items:center;justify-content:space-between;padding:24px 48px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:12px;position:relative}
 .header::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.4}
 .logo{display:flex;align-items:center;gap:12px}
@@ -81,17 +68,6 @@ a.doc-card[style*="--dc:#00c853"]{border-color:rgba(0,200,83,.4);background:rgba
 a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shadow:0 8px 32px rgba(0,200,83,.2)}
 @media(max-width:600px){.header{padding:16px 20px}.hero{padding:32px 20px 20px}.cards{grid-template-columns:1fr}.hist-section{padding:0 16px 40px}.doc-grid{grid-template-columns:repeat(3,1fr)}}
 </style></head><body>
-<!-- LOGIN OVERLAY -->
-<div id="login-overlay">
-  <div class="login-box">
-    <div class="login-logo">VIATEL <em>VISEU</em></div>
-    <div class="login-sub">Resultados Comerciais</div>
-    <label class="login-label" for="pwd-input">Password</label>
-    <input id="pwd-input" class="login-input" type="password" placeholder="···········" autocomplete="current-password">
-    <button class="login-btn" onclick="tryLogin()">ENTRAR</button>
-    <div id="login-error" class="login-error"></div>
-  </div>
-</div>
 <div class="header">
   <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div></div>
   <div class="live"><div class="ld"></div> Dados Reais · VPP</div>
@@ -121,12 +97,12 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
 <div class="mpanel" id="panel-202601">
   <div class="cards">
     <a href="202601/internos.html" class="card card-a">
-      <div class="card-top"><div class="card-icon">📊</div><div class="card-title">Resultados Gerais</div>
+      <div class="card-top"><div class="card-icon">📊</div><div class="card-title">Resultados por Vendedores Viatel Viseu</div>
         <div class="card-desc">Ranking individual dos 11 vendedores · TV e ME líquidas · Destaques semanais e gerais</div></div>
       <div class="card-bottom"><span class="card-tag">Equipa Completa · Janeiro 2026</span><span class="card-arrow">→</span></div>
     </a>
     <a href="202601/ce.html" class="card card-b">
-      <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Resultados Equipas</div>
+      <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Por Chefes de Equipa Viatel Viseu</div>
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Janeiro 2026</span><span class="card-arrow">→</span></div>
     </a>
@@ -135,12 +111,12 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
 <div class="mpanel" id="panel-202602">
   <div class="cards">
     <a href="202602/internos.html" class="card card-a">
-      <div class="card-top"><div class="card-icon">📊</div><div class="card-title">Resultados Gerais</div>
+      <div class="card-top"><div class="card-icon">📊</div><div class="card-title">Resultados por Vendedores Viatel Viseu</div>
         <div class="card-desc">Ranking individual dos 11 vendedores · TV e ME líquidas · Destaques semanais e gerais</div></div>
       <div class="card-bottom"><span class="card-tag">Equipa Completa · Fevereiro 2026</span><span class="card-arrow">→</span></div>
     </a>
     <a href="202602/ce.html" class="card card-b">
-      <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Resultados Equipas</div>
+      <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Por Chefes de Equipa Viatel Viseu</div>
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Fevereiro 2026</span><span class="card-arrow">→</span></div>
     </a>
@@ -149,12 +125,12 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
 <div class="mpanel" id="panel-202603">
   <div class="cards">
     <a href="202603/internos.html" class="card card-a">
-      <div class="card-top"><div class="card-icon">📊</div><div class="card-title">Resultados Gerais</div>
+      <div class="card-top"><div class="card-icon">📊</div><div class="card-title">Resultados por Vendedores Viatel Viseu</div>
         <div class="card-desc">Ranking individual dos 11 vendedores · TV e ME líquidas · Destaques semanais e gerais</div></div>
       <div class="card-bottom"><span class="card-tag">Equipa Completa · Março 2026</span><span class="card-arrow">→</span></div>
     </a>
     <a href="202603/ce.html" class="card card-b">
-      <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Resultados Equipas</div>
+      <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Por Chefes de Equipa Viatel Viseu</div>
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Março 2026</span><span class="card-arrow">→</span></div>
     </a>
@@ -163,12 +139,12 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
 <div class="mpanel active" id="panel-202604">
   <div class="cards">
     <a href="202604/internos.html" class="card card-a">
-      <div class="card-top"><div class="card-icon">📊</div><div class="card-title">Resultados Gerais</div>
+      <div class="card-top"><div class="card-icon">📊</div><div class="card-title">Resultados por Vendedores Viatel Viseu</div>
         <div class="card-desc">Ranking individual dos 11 vendedores · TV e ME líquidas · Destaques semanais e gerais</div></div>
       <div class="card-bottom"><span class="card-tag">Equipa Completa · Abril 2026</span><span class="card-arrow">→</span></div>
     </a>
     <a href="202604/ce.html" class="card card-b">
-      <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Resultados Equipas</div>
+      <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Por Chefes de Equipa Viatel Viseu</div>
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Abril 2026</span><span class="card-arrow">→</span></div>
     </a>
@@ -262,31 +238,6 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
 
 <div class="footer">Viatel Viseu &nbsp;·&nbsp; Coordenação <span>Gonçalo Ribeiro</span> &nbsp;·&nbsp; Actualizado 15/04/2026</div>
 <script>
-/* ── AUTENTICAÇÃO ── */
-const PWD_HASH = '7a57c38ddb84d7e09c2ef086ebaf852962050cad186420dfbc751923cdb875cb';
-async function sha256(str) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-async function tryLogin() {
-  const pwd = document.getElementById('pwd-input').value;
-  const hash = await sha256(pwd);
-  if (hash === PWD_HASH) {
-    sessionStorage.setItem('vv_auth', PWD_HASH);
-    document.getElementById('login-overlay').classList.add('hidden');
-  } else {
-    const err = document.getElementById('login-error');
-    err.textContent = 'Password incorrecta. Tenta novamente.';
-    err.classList.add('show');
-    document.getElementById('pwd-input').value = '';
-    document.getElementById('pwd-input').focus();
-  }
-}
-document.getElementById('pwd-input').addEventListener('keydown', e => { if (e.key==='Enter') tryLogin(); });
-// Verificar sessão ao carregar
-if (sessionStorage.getItem('vv_auth') === PWD_HASH) {
-  document.getElementById('login-overlay').classList.add('hidden');
-}
 /* ── NAVEGAÇÃO PRINCIPAL ── */
 function showSection(sec){
   document.querySelectorAll('.main-sec').forEach(s=>s.style.display='none');
