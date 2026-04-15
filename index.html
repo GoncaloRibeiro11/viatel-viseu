@@ -70,6 +70,18 @@ a.doc-card[style*="--dc:#e91e8c"]:hover{border-color:rgba(233,30,140,.8);box-sha
 a.doc-card[style*="--dc:#00c853"]{border-color:rgba(0,200,83,.4);background:rgba(0,200,83,.09)}
 a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shadow:0 8px 32px rgba(0,200,83,.2)}
 @media(max-width:600px){.header{padding:16px 20px}.hero{padding:32px 20px 20px}.cards{grid-template-columns:1fr}.hist-section{padding:0 16px 40px}.doc-grid{grid-template-columns:repeat(3,1fr)}}
+/* ── PARCEIROS PASSWORD MODAL ── */
+#parc-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(6,11,18,.85);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+#parc-modal.open{display:flex}
+.pm-box{background:#0d1825;border:1px solid rgba(245,158,11,.25);border-radius:16px;padding:40px 48px;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:340px;width:90%;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+.pm-icon{font-size:32px}.pm-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#f59e0b;text-align:center}
+.pm-sub{font-size:12px;color:#9aafc4;text-align:center}
+.pm-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 16px;font-family:'DM Sans',sans-serif;font-size:15px;color:#fff;outline:none;text-align:center;letter-spacing:3px;box-sizing:border-box;transition:border-color .2s}
+.pm-input:focus{border-color:rgba(245,158,11,.5)}
+.pm-btn{width:100%;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.4);border-radius:10px;padding:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#f59e0b;cursor:pointer;letter-spacing:1px;transition:all .2s}
+.pm-btn:hover{background:rgba(245,158,11,.25)}
+.pm-cancel{font-size:12px;color:#9aafc4;cursor:pointer;text-decoration:underline;background:none;border:none}
+.pm-err{font-size:12px;color:#ff6b6b;min-height:16px;text-align:center}
 </style></head><body>
 <div class="header">
   <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div></div>
@@ -109,7 +121,7 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Janeiro 2026</span><span class="card-arrow">→</span></div>
     </a>
-    <a href="202601/parceiros.html" class="card card-c">
+    <a href="#" class="card card-c" onclick="openParc('202601/parceiros.html');return false;">
       <div class="card-top"><div class="card-icon">🤝</div><div class="card-title">Resultados Gestora de Parceiros</div>
         <div class="card-desc">Equipa Parceiros · Mónica Rodrigues · TV e ME líquidas · Acesso restrito</div></div>
       <div class="card-bottom"><span class="card-tag">Gestora de Parceiros · Janeiro 2026</span><span class="card-arrow">→</span></div>
@@ -128,7 +140,7 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Fevereiro 2026</span><span class="card-arrow">→</span></div>
     </a>
-    <a href="202602/parceiros.html" class="card card-c">
+    <a href="#" class="card card-c" onclick="openParc('202602/parceiros.html');return false;">
       <div class="card-top"><div class="card-icon">🤝</div><div class="card-title">Resultados Gestora de Parceiros</div>
         <div class="card-desc">Equipa Parceiros · Mónica Rodrigues · TV e ME líquidas · Acesso restrito</div></div>
       <div class="card-bottom"><span class="card-tag">Gestora de Parceiros · Fevereiro 2026</span><span class="card-arrow">→</span></div>
@@ -147,7 +159,7 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Março 2026</span><span class="card-arrow">→</span></div>
     </a>
-    <a href="202603/parceiros.html" class="card card-c">
+    <a href="#" class="card card-c" onclick="openParc('202603/parceiros.html');return false;">
       <div class="card-top"><div class="card-icon">🤝</div><div class="card-title">Resultados Gestora de Parceiros</div>
         <div class="card-desc">Equipa Parceiros · Mónica Rodrigues · TV e ME líquidas · Acesso restrito</div></div>
       <div class="card-bottom"><span class="card-tag">Gestora de Parceiros · Março 2026</span><span class="card-arrow">→</span></div>
@@ -166,7 +178,7 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Abril 2026</span><span class="card-arrow">→</span></div>
     </a>
-    <a href="202604/parceiros.html" class="card card-c">
+    <a href="#" class="card card-c" onclick="openParc('202604/parceiros.html');return false;">
       <div class="card-top"><div class="card-icon">🤝</div><div class="card-title">Resultados Gestora de Parceiros</div>
         <div class="card-desc">Equipa Parceiros · Mónica Rodrigues · TV e ME líquidas · Acesso restrito</div></div>
       <div class="card-bottom"><span class="card-tag">Gestora de Parceiros · Abril 2026</span><span class="card-arrow">→</span></div>
@@ -282,5 +294,48 @@ function showMonth(ym){
   document.getElementById('panel-'+ym).classList.add('active');
   document.getElementById('btn-'+ym).classList.add('active');
 }
+/* ── PARCEIROS MODAL ── */
+var _parcUrl='';
+function openParc(url){
+  _parcUrl=url;
+  document.getElementById('pm-pw').value='';
+  document.getElementById('pm-err').textContent='';
+  document.getElementById('parc-modal').classList.add('open');
+  setTimeout(function(){document.getElementById('pm-pw').focus();},120);
+}
+function closeParc(){
+  document.getElementById('parc-modal').classList.remove('open');
+  _parcUrl='';
+}
+function pmCheck(){
+  var v=document.getElementById('pm-pw').value;
+  try{
+    if(btoa(unescape(encodeURIComponent(v)))==='Y2hlZ2FyYXMxNTA='){
+      document.getElementById('parc-modal').classList.remove('open');
+      window.location.href=_parcUrl;
+    }else{
+      document.getElementById('pm-err').textContent='Password incorrecta.';
+      document.getElementById('pm-pw').value='';
+      document.getElementById('pm-pw').focus();
+    }
+  }catch(e){
+    document.getElementById('pm-err').textContent='Password incorrecta.';
+    document.getElementById('pm-pw').value='';
+  }
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('parc-modal').addEventListener('click',function(e){if(e.target===this)closeParc();});
+});
 </script>
+<div id="parc-modal">
+  <div class="pm-box">
+    <div class="pm-icon">🤝</div>
+    <div class="pm-title">Acesso Restrito</div>
+    <div class="pm-sub">Resultados Gestora de Parceiros</div>
+    <input id="pm-pw" class="pm-input" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')pmCheck()">
+    <button class="pm-btn" onclick="pmCheck()">ENTRAR</button>
+    <div class="pm-err" id="pm-err"></div>
+    <button class="pm-cancel" onclick="closeParc()">Cancelar</button>
+  </div>
+</div>
 </body></html>
