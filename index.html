@@ -29,21 +29,24 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .mbtn.closed{color:rgba(154,175,196,.5);border-color:rgba(255,255,255,.05);font-size:14px}
 .mbtn.closed:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:var(--muted)}
 .mpanel{display:none}.mpanel.active{display:block}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.cards{grid-template-columns:1fr}}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;text-decoration:none;color:var(--text);transition:transform .18s,box-shadow .18s;display:block}
 .card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
 .card-top{padding:28px 28px 20px;position:relative}
 .card-top::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
 .card-a .card-top::before{background:linear-gradient(90deg,var(--accent),rgba(0,200,240,.2))}
 .card-b .card-top::before{background:linear-gradient(90deg,#a855f7,rgba(168,85,247,.2))}
+.card-c .card-top::before{background:linear-gradient(90deg,#f59e0b,rgba(245,158,11,.2))}
 .card-icon{font-size:32px;margin-bottom:12px}
 .card-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px}
-.card-a .card-title{color:var(--accent)}.card-b .card-title{color:#a855f7}
+.card-a .card-title{color:var(--accent)}.card-b .card-title{color:#a855f7}.card-c .card-title{color:#f59e0b}
 .card-desc{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5}
 .card-bottom{padding:16px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .card-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700}
 .card-arrow{font-size:18px;color:var(--muted);transition:transform .18s,color .18s}
-.card:hover .card-arrow{transform:translateX(4px);color:var(--accent)}.card-b:hover .card-arrow{color:#a855f7}
+.card:hover .card-arrow{transform:translateX(4px);color:var(--accent)}.card-b:hover .card-arrow{color:#a855f7}.card-c:hover .card-arrow{color:#f59e0b}
 .divider{height:1px;background:var(--border);max-width:860px;margin:0 auto 32px}
 .footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);letter-spacing:1px}
 .footer span{color:var(--accent)}
@@ -106,6 +109,11 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Janeiro 2026</span><span class="card-arrow">→</span></div>
     </a>
+    <a href="202601/parceiros.html" class="card card-c">
+      <div class="card-top"><div class="card-icon">🤝</div><div class="card-title">Resultados Gestora de Parceiros</div>
+        <div class="card-desc">Equipa Parceiros · Mónica Rodrigues · TV e ME líquidas · Acesso restrito</div></div>
+      <div class="card-bottom"><span class="card-tag">Gestora de Parceiros · Janeiro 2026</span><span class="card-arrow">→</span></div>
+    </a>
   </div>
 </div>
 <div class="mpanel" id="panel-202602">
@@ -119,6 +127,11 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
       <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Por Chefes de Equipa Viatel Viseu</div>
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Fevereiro 2026</span><span class="card-arrow">→</span></div>
+    </a>
+    <a href="202602/parceiros.html" class="card card-c">
+      <div class="card-top"><div class="card-icon">🤝</div><div class="card-title">Resultados Gestora de Parceiros</div>
+        <div class="card-desc">Equipa Parceiros · Mónica Rodrigues · TV e ME líquidas · Acesso restrito</div></div>
+      <div class="card-bottom"><span class="card-tag">Gestora de Parceiros · Fevereiro 2026</span><span class="card-arrow">→</span></div>
     </a>
   </div>
 </div>
@@ -134,6 +147,11 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Março 2026</span><span class="card-arrow">→</span></div>
     </a>
+    <a href="202603/parceiros.html" class="card card-c">
+      <div class="card-top"><div class="card-icon">🤝</div><div class="card-title">Resultados Gestora de Parceiros</div>
+        <div class="card-desc">Equipa Parceiros · Mónica Rodrigues · TV e ME líquidas · Acesso restrito</div></div>
+      <div class="card-bottom"><span class="card-tag">Gestora de Parceiros · Março 2026</span><span class="card-arrow">→</span></div>
+    </a>
   </div>
 </div>
 <div class="mpanel active" id="panel-202604">
@@ -147,6 +165,11 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
       <div class="card-top"><div class="card-icon">🏆</div><div class="card-title">Por Chefes de Equipa Viatel Viseu</div>
         <div class="card-desc">Gestão de equipas · Álvaro Pedro vs Raquel Bernardo · Comparativo e resultados por equipa</div></div>
       <div class="card-bottom"><span class="card-tag">Chefes de Equipa · Abril 2026</span><span class="card-arrow">→</span></div>
+    </a>
+    <a href="202604/parceiros.html" class="card card-c">
+      <div class="card-top"><div class="card-icon">🤝</div><div class="card-title">Resultados Gestora de Parceiros</div>
+        <div class="card-desc">Equipa Parceiros · Mónica Rodrigues · TV e ME líquidas · Acesso restrito</div></div>
+      <div class="card-bottom"><span class="card-tag">Gestora de Parceiros · Abril 2026</span><span class="card-arrow">→</span></div>
     </a>
   </div>
 </div>
