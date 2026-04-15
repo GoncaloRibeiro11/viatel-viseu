@@ -28,29 +28,29 @@
 </div>
 <script>
 (function(){
-  var PH='e36558343288e4593e3910b7e53cc68f155f7839a6e7ae83d4ed1d2507496022';
+  var PK='Y2hlZ2FyYXMxNTA=';
   var SK='parc_auth';
-  async function sha256(msg){
-    var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(msg));
-    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-  }
-  window.pgCheck=async function(){
+  window.pgCheck=function(){
     var v=document.getElementById('pg-pw').value;
-    var h=await sha256(v);
-    if(h===PH){
-      sessionStorage.setItem(SK,'1');
-      document.getElementById('parc-gate').classList.add('hidden');
-      document.getElementById('pg-err').textContent='';
-    }else{
+    try{
+      if(btoa(unescape(encodeURIComponent(v)))===PK){
+        sessionStorage.setItem(SK,'1');
+        document.getElementById('parc-gate').classList.add('hidden');
+        document.getElementById('pg-err').textContent='';
+      }else{
+        document.getElementById('pg-err').textContent='Password incorrecta.';
+        document.getElementById('pg-pw').value='';
+        document.getElementById('pg-pw').focus();
+      }
+    }catch(e){
       document.getElementById('pg-err').textContent='Password incorrecta.';
       document.getElementById('pg-pw').value='';
-      document.getElementById('pg-pw').focus();
     }
   };
   if(sessionStorage.getItem(SK)==='1'){
     document.getElementById('parc-gate').classList.add('hidden');
   }else{
-    document.getElementById('pg-pw').focus();
+    setTimeout(function(){document.getElementById('pg-pw').focus();},100);
   }
 })();
 </script>
