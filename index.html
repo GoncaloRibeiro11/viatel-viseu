@@ -70,6 +70,20 @@ a.doc-card[style*="--dc:#e91e8c"]:hover{border-color:rgba(233,30,140,.8);box-sha
 a.doc-card[style*="--dc:#00c853"]{border-color:rgba(0,200,83,.4);background:rgba(0,200,83,.09)}
 a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shadow:0 8px 32px rgba(0,200,83,.2)}
 @media(max-width:600px){.header{padding:16px 20px}.hero{padding:32px 20px 20px}.cards{grid-template-columns:1fr}.hist-section{padding:0 16px 40px}.doc-grid{grid-template-columns:repeat(3,1fr)}}
+/* ── SITE AUTH GATE ── */
+#site-gate{position:fixed;inset:0;z-index:99999;background:#060b12;display:flex;align-items:center;justify-content:center;flex-direction:column}
+#site-gate.hidden{display:none}
+.sg-box{background:#0d1825;border:1px solid rgba(0,200,240,.2);border-radius:16px;padding:44px 52px;display:flex;flex-direction:column;align-items:center;gap:18px;max-width:360px;width:90%;box-shadow:0 24px 64px rgba(0,0,0,.7)}
+.sg-logo{display:flex;align-items:center;gap:10px}
+.sg-dot{width:10px;height:10px;background:#00c8f0;border-radius:50%;box-shadow:0 0 14px #00c8f0}
+.sg-brand{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:4px;color:#eef3fa}
+.sg-brand em{color:#00c8f0;font-style:normal}
+.sg-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#9aafc4;text-align:center}
+.sg-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:15px;color:#fff;outline:none;text-align:center;letter-spacing:3px;box-sizing:border-box;transition:border-color .2s}
+.sg-input:focus{border-color:rgba(0,200,240,.5)}
+.sg-btn{width:100%;background:rgba(0,200,240,.15);border:1px solid rgba(0,200,240,.4);border-radius:10px;padding:13px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#00c8f0;cursor:pointer;letter-spacing:1px;transition:all .2s}
+.sg-btn:hover{background:rgba(0,200,240,.25)}
+.sg-err{font-size:12px;color:#ff6b6b;min-height:16px;text-align:center}
 /* ── PARCEIROS PASSWORD MODAL ── */
 #parc-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(6,11,18,.85);backdrop-filter:blur(8px);align-items:center;justify-content:center}
 #parc-modal.open{display:flex}
@@ -83,6 +97,42 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
 .pm-cancel{font-size:12px;color:#9aafc4;cursor:pointer;text-decoration:underline;background:none;border:none}
 .pm-err{font-size:12px;color:#ff6b6b;min-height:16px;text-align:center}
 </style></head><body>
+<div id="site-gate">
+  <div class="sg-box">
+    <div class="sg-logo"><div class="sg-dot"></div><div class="sg-brand">VIATEL <em>VISEU</em></div></div>
+    <div class="sg-title">Acesso Reservado · Coordenação</div>
+    <input id="sg-pw" class="sg-input" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')sgCheck()">
+    <button class="sg-btn" onclick="sgCheck()">ENTRAR</button>
+    <div class="sg-err" id="sg-err"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var PK='Y2hlZ2FyYXMyMDA=', SK='viatel_auth';
+  function sgCheck(){
+    var v=document.getElementById('sg-pw').value;
+    try{
+      if(btoa(unescape(encodeURIComponent(v)))===PK){
+        sessionStorage.setItem(SK,'1');
+        document.getElementById('site-gate').classList.add('hidden');
+      }else{
+        document.getElementById('sg-err').textContent='Password incorrecta.';
+        document.getElementById('sg-pw').value='';
+        document.getElementById('sg-pw').focus();
+      }
+    }catch(e){
+      document.getElementById('sg-err').textContent='Password incorrecta.';
+      document.getElementById('sg-pw').value='';
+    }
+  }
+  window.sgCheck=sgCheck;
+  if(sessionStorage.getItem(SK)==='1'){
+    document.getElementById('site-gate').classList.add('hidden');
+  }else{
+    setTimeout(function(){document.getElementById('sg-pw').focus();},100);
+  }
+})();
+</script>
 <div class="header">
   <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div></div>
   <div class="live"><div class="ld"></div> Dados Reais · VPP</div>
