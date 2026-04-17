@@ -108,7 +108,7 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
 </div>
 <script>
 (function(){
-  var PK='Y2hlZ2FyYXMyMDA=', SK='viatel_auth';
+  var PK='VmlhdGVsKjIwMA==', SK='viatel_auth';
   function sgCheck(){
     var v=document.getElementById('sg-pw').value;
     try{
@@ -316,6 +316,10 @@ a.doc-card[style*="--dc:#00c853"]:hover{border-color:rgba(0,200,83,.8);box-shado
         <div class="dc-icon">📱</div><div class="dc-label">Telemóvel</div>
         <div class="dc-sub">Ver PDF</div>
       </a>
+      <a href="docs/campanhas/296_20260417_Pacotes MEO_MI_novospacotes_e_samsung.pdf" target="_blank" class="doc-card" style="--dc:#c6e600">
+        <div class="dc-icon">📋</div><div class="dc-label">296_20260417_Pacotes M…</div>
+        <div class="dc-sub">Ver PDF</div>
+      </a>
     </div>
   </div>
 </div>
@@ -360,7 +364,7 @@ function closeParc(){
 function pmCheck(){
   var v=document.getElementById('pm-pw').value;
   try{
-    if(btoa(unescape(encodeURIComponent(v)))==='Y2hlZ2FyYXMxNTA='){
+    if(btoa(unescape(encodeURIComponent(v)))==='VmlhdGVsKjEwMA=='){
       document.getElementById('parc-modal').classList.remove('open');
       window.location.href=_parcUrl;
     }else{
