@@ -1,5 +1,5 @@
 @echo off
-cd /d "C:\Users\Gonçalo\OneDrive\Viatel Viseu\Dashboard Resultados Mensais\site"
+cd /d "%~dp0"
 
 echo.
 echo  ============================================
