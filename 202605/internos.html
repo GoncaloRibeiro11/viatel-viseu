@@ -17,6 +17,18 @@
 .sg-btn{width:100%;background:rgba(0,200,240,.15);border:1px solid rgba(0,200,240,.4);border-radius:10px;padding:13px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#00c8f0;cursor:pointer;letter-spacing:1px;transition:all .2s}
 .sg-btn:hover{background:rgba(0,200,240,.25)}
 .sg-err{font-size:12px;color:#ff6b6b;min-height:16px;text-align:center}
+
+/* ── MONTH NAV BAR ── */
+.month-nav-bar{display:flex;align-items:center;padding:8px 32px;background:rgba(255,255,255,.015);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.month-nav-bar::-webkit-scrollbar{height:3px}.month-nav-bar::-webkit-scrollbar-thumb{background:rgba(0,200,240,.3);border-radius:2px}
+.nav-back{flex-shrink:0;background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:5px 14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s;margin-right:16px;white-space:nowrap}
+.nav-back:hover{border-color:rgba(0,200,240,.4);color:var(--accent)}
+.nav-sep{width:1px;height:18px;background:var(--border);flex-shrink:0;margin-right:12px}
+.nav-mbtn{flex-shrink:0;background:transparent;border:1px solid transparent;border-radius:8px;padding:5px 12px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1.5px;color:var(--muted);text-decoration:none;display:inline-block;transition:all .15s;white-space:nowrap}
+.nav-mbtn:hover{background:rgba(0,200,240,.08);border-color:rgba(0,200,240,.3);color:var(--accent)}
+.nav-mbtn.nav-active{background:rgba(0,200,240,.12);border-color:rgba(0,200,240,.5);color:var(--accent)}
+.nav-mbtn.nav-closed{color:rgba(154,175,196,.45)}
+.nav-mbtn.nav-closed:hover{color:var(--muted);background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
 </style></head><body>
 <div id="site-gate">
   <div class="sg-box">
@@ -59,7 +71,7 @@
   <div class="h-center"><div class="h-title">Dashboard Comercial</div><div class="h-sub">Coordenação Gonçalo Ribeiro &nbsp;·&nbsp; Maio 2026</div></div>
   <div class="h-right"><div class="live"><div class="ld"></div> Dados Reais · VPP</div><div class="h-date">Actualizado: 07/05/2026 · S1 em curso</div></div>
 </div>
-<!-- VV-NAV -->
+<div class="month-nav-bar"><a href="../index.html" class="nav-back">← Início</a><div class="nav-sep"></div><a href="../202601/internos.html" class="nav-mbtn nav-closed">✓ Janeiro 2026</a><a href="../202602/internos.html" class="nav-mbtn nav-closed">✓ Fevereiro 2026</a><a href="../202603/internos.html" class="nav-mbtn nav-closed">✓ Março 2026</a><a href="../202604/internos.html" class="nav-mbtn nav-closed">✓ Abril 2026</a><a href="../202605/internos.html" class="nav-mbtn nav-active">Maio 2026</a></div>
 <div class="kpi-strip">
   <div class="kpi tv"><div class="kl">TV Líquidas</div><div class="kv">9</div><div class="ku">VB − VA acumulado</div><div class="kpb"><div class="kpf" style="width:7%;background:linear-gradient(90deg,#ff4444,rgba(255,68,68,.4))"></div></div><div class="kp-meta"><span>9 real · 119 obj</span><span style="color:#ff4444;font-weight:700">TCO 7%</span></div></div>
   <div class="kpi me"><div class="kl">ME Líquidas</div><div class="kv">9</div><div class="ku">MEO Energia líquido</div><div class="kpb"><div class="kpf" style="width:13%;background:linear-gradient(90deg,#ff4444,rgba(255,68,68,.4))"></div></div><div class="kp-meta"><span>9 real · 69 obj</span><span style="color:#ff4444;font-weight:700">TCO 13%</span></div></div>
