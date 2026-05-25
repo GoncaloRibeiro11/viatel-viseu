@@ -107,20 +107,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   .lb td:nth-child(5),.lb td:nth-child(6),.lb td:nth-child(7){display:none}
 }
 
-/* ── SITE AUTH GATE ── */
-#site-gate{position:fixed;inset:0;z-index:99999;background:#060b12;display:flex;align-items:center;justify-content:center;flex-direction:column}
-#site-gate.hidden{display:none}
-.sg-box{background:#0d1825;border:1px solid rgba(0,200,240,.2);border-radius:16px;padding:44px 52px;display:flex;flex-direction:column;align-items:center;gap:18px;max-width:360px;width:90%;box-shadow:0 24px 64px rgba(0,0,0,.7)}
-.sg-logo{display:flex;align-items:center;gap:10px}
-.sg-dot{width:10px;height:10px;background:#00c8f0;border-radius:50%;box-shadow:0 0 14px #00c8f0}
-.sg-brand{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:4px;color:#eef3fa}
-.sg-brand em{color:#00c8f0;font-style:normal}
-.sg-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#9aafc4;text-align:center}
-.sg-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:15px;color:#fff;outline:none;text-align:center;letter-spacing:3px;box-sizing:border-box;transition:border-color .2s}
-.sg-input:focus{border-color:rgba(0,200,240,.5)}
-.sg-btn{width:100%;background:rgba(0,200,240,.15);border:1px solid rgba(0,200,240,.4);border-radius:10px;padding:13px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#00c8f0;cursor:pointer;letter-spacing:1px;transition:all .2s}
-.sg-btn:hover{background:rgba(0,200,240,.25)}
-.sg-err{font-size:12px;color:#ff6b6b;min-height:16px;text-align:center}
 
 /* ── MONTH NAV BAR ── */
 .month-nav-bar{display:flex;align-items:center;padding:8px 32px;background:rgba(255,255,255,.015);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
@@ -134,42 +120,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .nav-mbtn.nav-closed{color:rgba(154,175,196,.45)}
 .nav-mbtn.nav-closed:hover{color:var(--muted);background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
 </style></head><body>
-<div id="site-gate">
-  <div class="sg-box">
-    <div class="sg-logo"><div class="sg-dot"></div><div class="sg-brand">VIATEL <em>VISEU</em></div></div>
-    <div class="sg-title">Acesso Reservado · Coordenação</div>
-    <input id="sg-pw" class="sg-input" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')sgCheck()">
-    <button class="sg-btn" onclick="sgCheck()">ENTRAR</button>
-    <div class="sg-err" id="sg-err"></div>
-  </div>
-</div>
-<script>
-(function(){
-  var PK='Y2hlZ2FyMTAw', SK='viatel_auth';
-  function sgCheck(){
-    var v=document.getElementById('sg-pw').value;
-    try{
-      if(btoa(unescape(encodeURIComponent(v)))===PK){
-        sessionStorage.setItem(SK,'1');
-        document.getElementById('site-gate').classList.add('hidden');
-      }else{
-        document.getElementById('sg-err').textContent='Password incorrecta.';
-        document.getElementById('sg-pw').value='';
-        document.getElementById('sg-pw').focus();
-      }
-    }catch(e){
-      document.getElementById('sg-err').textContent='Password incorrecta.';
-      document.getElementById('sg-pw').value='';
-    }
-  }
-  window.sgCheck=sgCheck;
-  if(sessionStorage.getItem(SK)==='1'){
-    document.getElementById('site-gate').classList.add('hidden');
-  }else{
-    setTimeout(function(){document.getElementById('sg-pw').focus();},100);
-  }
-})();
-</script>
 <div class="header">
   <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MCA4MCI+PGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiIGZpbGw9IiMwMDNkN2EiLz48dGV4dCB4PSI0MCIgeT0iNTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCBCbGFjayIgZm9udC1zaXplPSIyMiIgZmlsbD0id2hpdGUiIGZvbnQtd2VpZ2h0PSI5MDAiPk1FTzwvdGV4dD48L3N2Zz4=" style="height:32px;margin-left:4px;opacity:.9;"></div>
   <div class="h-center"><div class="h-title">GESTÃO DE EQUIPAS</div><div class="h-sub">Coordenador · Gonçalo Ribeiro · Março 2026</div></div>
