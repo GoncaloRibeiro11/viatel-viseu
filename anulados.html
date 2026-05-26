@@ -8,8 +8,20 @@
 .tag-rec{display:inline-block;background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.3);border-radius:5px;padding:1px 7px;font-size:10px;color:var(--green);font-weight:700;letter-spacing:1px}
 .tag-pend{display:inline-block;background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.25);border-radius:5px;padding:1px 7px;font-size:10px;color:#ff6b6b;font-weight:700;letter-spacing:1px}
 .row-toggle:hover{background:rgba(255,255,255,.03)}
+
+/* ── MONTH NAV BAR ── */
+.month-nav-bar{display:flex;align-items:center;padding:8px 32px;background:rgba(255,255,255,.015);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.month-nav-bar::-webkit-scrollbar{height:3px}.month-nav-bar::-webkit-scrollbar-thumb{background:rgba(0,200,240,.3);border-radius:2px}
+.nav-back{flex-shrink:0;background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:5px 14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s;margin-right:16px;white-space:nowrap}
+.nav-back:hover{border-color:rgba(0,200,240,.4);color:var(--accent)}
+.nav-sep{width:1px;height:18px;background:var(--border);flex-shrink:0;margin-right:12px}
+.nav-mbtn{flex-shrink:0;background:transparent;border:1px solid transparent;border-radius:8px;padding:5px 12px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1.5px;color:var(--muted);text-decoration:none;display:inline-block;transition:all .15s;white-space:nowrap}
+.nav-mbtn:hover{background:rgba(0,200,240,.08);border-color:rgba(0,200,240,.3);color:var(--accent)}
+.nav-mbtn.nav-active{background:rgba(0,200,240,.12);border-color:rgba(0,200,240,.5);color:var(--accent)}
+.nav-mbtn.nav-closed{color:rgba(154,175,196,.45)}
+.nav-mbtn.nav-closed:hover{color:var(--muted);background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
 </style></head><body>
-<!-- VV-NAV -->
+<div class="month-nav-bar"><a href="index.html" class="nav-back">← Início</a></div>
 <div class="header">
   <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div></div>
   <div class="h-center"><div class="h-title">ANULADOS &amp; RECUPERAÇÃO</div><div class="h-sub">Análise de anulações MEOFIBRA · MEOSat</div></div>
