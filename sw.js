@@ -1,5 +1,5 @@
 // Service Worker — Viatel Viseu PWA
-const CACHE = 'viatel-v2';
+const CACHE = 'viatel-v3';
 const PRECACHE = [
   './index.html',
   './manifest.json',
