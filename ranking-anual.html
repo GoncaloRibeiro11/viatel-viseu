@@ -1,0 +1,349 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1">
+<title>Ranking Anual 2026 · Viatel Viseu</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b12;--surface:#0d1825;--border:rgba(255,255,255,.08);--accent:#00c8f0;--accent2:#ff5f2e;--gold:#f5c518;--silver:#b0b8c1;--bronze:#cd7f32;--green:#00e676;--red:#ff4444;--text:#eef3fa;--muted:#9aafc4;--ce1:#60a5fa;--ce2:#f472b6;--ce3:#a78bfa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;background-image:radial-gradient(ellipse 80% 50% at 50% -15%,rgba(0,200,240,.09) 0%,transparent 60%)}
+.header{display:flex;align-items:center;justify-content:space-between;padding:18px 40px 16px;border-bottom:1px solid var(--border);position:relative;flex-wrap:wrap;gap:12px}
+.header::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.4}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-dot{width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.brand{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:4px}
+.brand em{color:var(--accent);font-style:normal}
+.h-center{text-align:center;flex:1}
+.h-title{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:5px;line-height:1}
+.h-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.nav-back{background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:5px 14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
+.nav-back:hover{border-color:rgba(0,200,240,.3);color:var(--accent)}
+
+/* KPI strip */
+.kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;margin:20px 40px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--border)}
+.kpi{background:var(--surface);padding:14px 18px;position:relative}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.kpi.k1::before{background:var(--accent)}.kpi.k2::before{background:var(--accent2)}.kpi.k3::before{background:var(--gold)}
+.kpi.k4::before{background:var(--ce1)}.kpi.k5::before{background:var(--ce2)}.kpi.k6::before{background:var(--ce3)}
+.kl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:700}
+.kv{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1}
+.kpi.k1 .kv{color:var(--accent)}.kpi.k2 .kv{color:var(--accent2)}.kpi.k3 .kv{color:var(--gold)}
+.kpi.k4 .kv{color:var(--ce1)}.kpi.k5 .kv{color:var(--ce2)}.kpi.k6 .kv{color:var(--ce3)}
+.ku{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* tabs */
+.tabs-bar{max-width:920px;margin:0 auto;padding:16px 24px 8px;display:flex;gap:10px}
+.tab-btn{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:8px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s}
+.tab-btn:hover{background:rgba(0,200,240,.08);border-color:rgba(0,200,240,.3);color:var(--accent)}
+.tab-btn.active{background:rgba(0,200,240,.12);border-color:rgba(0,200,240,.5);color:var(--accent);box-shadow:0 0 14px rgba(0,200,240,.15)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* main table */
+.section{max-width:920px;margin:0 auto;padding:8px 24px 48px}
+.sh{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sh::after{content:'';flex:1;height:1px;background:var(--border)}
+.lb{width:100%;border-collapse:collapse}
+.lb thead tr{border-bottom:1px solid var(--border)}
+.lb thead th{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:7px 10px;text-align:left;font-weight:700}
+.lb thead th.c{text-align:center}
+.lbr{border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s}
+.lbr:hover{background:rgba(255,255,255,.03)}
+.lb td{padding:10px 8px;vertical-align:middle}
+.rc{width:48px;text-align:center}
+.rn{font-family:'Bebas Neue',sans-serif;font-size:32px}
+.rn.gold{color:var(--gold)}.rn.silver{color:var(--silver)}.rn.bronze{color:var(--bronze)}.rn.rest{color:var(--muted)}
+.sl{display:flex;align-items:center;gap:14px}
+.av{width:48px;height:48px;border-radius:12px;background:rgba(107,122,141,.2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--muted);flex-shrink:0}
+.av.team-ap{background:rgba(96,165,250,.12);color:var(--ce1);border:1px solid rgba(96,165,250,.2)}
+.av.team-rb{background:rgba(244,114,182,.12);color:var(--ce2);border:1px solid rgba(244,114,182,.2)}
+.av.team-rp{background:rgba(167,139,250,.12);color:var(--ce3);border:1px solid rgba(167,139,250,.2)}
+.sn{font-weight:700;font-size:16px}
+.st{font-size:12px;color:var(--muted)}
+.tvn{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--accent);text-align:center;min-width:44px}
+.men{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--accent2);text-align:center;min-width:44px}
+.totn{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold);text-align:center;min-width:50px}
+.bar-cell{width:90px}
+.bar-wrap{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),rgba(245,197,24,.3))}
+.monthly-row{display:none;background:rgba(255,255,255,.015)}
+.monthly-row.open{display:table-row}
+.monthly-inner{padding:10px 10px 14px 74px}
+.mth-grid{display:flex;gap:8px;flex-wrap:wrap}
+.mth-pill{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:6px 12px;text-align:center;min-width:68px}
+.mth-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.mth-vals{display:flex;gap:6px;align-items:baseline;justify-content:center}
+.mth-tv{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent)}
+.mth-me{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent2)}
+.mth-sep{color:rgba(255,255,255,.15);font-size:14px}
+.expand-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:4px;transition:transform .2s}
+.expand-btn.open{transform:rotate(90deg);color:var(--accent)}
+
+/* team cards */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px}
+.team-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;position:relative}
+.team-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.tc-ap::before{background:linear-gradient(90deg,var(--ce1),rgba(96,165,250,.2))}
+.tc-rb::before{background:linear-gradient(90deg,var(--ce2),rgba(244,114,182,.2))}
+.tc-rp::before{background:linear-gradient(90deg,var(--ce3),rgba(167,139,250,.2))}
+.tc-body{padding:20px}
+.tc-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;margin-bottom:4px}
+.tc-ap .tc-name{color:var(--ce1)}.tc-rb .tc-name{color:var(--ce2)}.tc-rp .tc-name{color:var(--ce3)}
+.tc-sub{font-size:11px;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+.tc-stats{display:flex;gap:16px;margin-bottom:16px}
+.tc-stat{text-align:center}
+.tc-stat-v{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1}
+.tc-stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.tc-stat.stv .tc-stat-v{color:var(--accent)}.tc-stat.sme .tc-stat-v{color:var(--accent2)}.tc-stat.stot .tc-stat-v{color:var(--gold)}
+.tc-bar-wrap{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-bottom:6px}
+.tc-bar-fill{height:100%;border-radius:2px}
+.tc-ap .tc-bar-fill{background:var(--ce1)}.tc-rb .tc-bar-fill{background:var(--ce2)}.tc-rp .tc-bar-fill{background:var(--ce3)}
+.tc-pct{font-size:11px;text-align:right;font-weight:700;margin-bottom:14px}
+.tc-ap .tc-pct{color:var(--ce1)}.tc-rb .tc-pct{color:var(--ce2)}.tc-rp .tc-pct{color:var(--ce3)}
+.tc-monthly{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.tcm-pill{background:rgba(255,255,255,.03);border-radius:6px;padding:5px 4px;text-align:center}
+.tcm-l{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.tcm-tv{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--accent)}
+.tcm-me{font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--accent2)}
+
+/* conv ratio */
+.conv-pct{font-size:13px;color:var(--muted);font-weight:700;text-align:center}
+
+@media(max-width:900px){
+  .header{padding:14px 20px}.h-title{font-size:28px}.kpi-strip{grid-template-columns:repeat(3,1fr);margin:14px 16px}
+  .section{padding:8px 16px 40px}.team-grid{grid-template-columns:1fr}
+  .bar-cell,.conv-pct{display:none}
+}
+@media(max-width:520px){.kpi-strip{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div id="site-gate" style="position:fixed;inset:0;z-index:99999;background:#060b12;display:flex;align-items:center;justify-content:center;flex-direction:column">
+  <div style="background:#0d1825;border:1px solid rgba(0,200,240,.2);border-radius:16px;padding:44px 52px;display:flex;flex-direction:column;align-items:center;gap:18px;max-width:360px;width:90%">
+    <div style="display:flex;align-items:center;gap:10px"><div style="width:10px;height:10px;background:#00c8f0;border-radius:50%;box-shadow:0 0 14px #00c8f0"></div><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:4px">VIATEL <em style="color:#00c8f0;font-style:normal">VISEU</em></div></div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#9aafc4">Acesso Reservado · Coordenação</div>
+    <input id="sg-pw" style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:15px;color:#fff;outline:none;text-align:center;letter-spacing:3px;box-sizing:border-box;transition:border-color .2s" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')sgCheck()">
+    <button onclick="sgCheck()" style="width:100%;background:rgba(0,200,240,.15);border:1px solid rgba(0,200,240,.4);border-radius:10px;padding:13px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#00c8f0;cursor:pointer;letter-spacing:1px">ENTRAR</button>
+    <div id="sg-err" style="font-size:12px;color:#ff6b6b;min-height:16px"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var PK='VmlhdGVsKjIwMA==',SK='viatel_auth';
+  function sgCheck(){var v=document.getElementById('sg-pw').value;try{if(btoa(unescape(encodeURIComponent(v)))===PK){sessionStorage.setItem(SK,'1');document.getElementById('site-gate').style.display='none';}else{document.getElementById('sg-err').textContent='Password incorrecta.';document.getElementById('sg-pw').value='';document.getElementById('sg-pw').focus();}}catch(e){document.getElementById('sg-err').textContent='Password incorrecta.';}}
+  window.sgCheck=sgCheck;
+  if(sessionStorage.getItem(SK)==='1'){document.getElementById('site-gate').style.display='none';}
+  else{setTimeout(function(){document.getElementById('sg-pw').focus();},100);}
+})();
+</script>
+
+<div class="header">
+  <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div></div>
+  <div class="h-center">
+    <div class="h-title">RANKING ANUAL</div>
+    <div class="h-sub">TV &amp; MEO Energia · 2026 YTD</div>
+  </div>
+  <a href="index.html" class="nav-back">← Dashboard</a>
+</div>
+
+<!-- KPI strip -->
+<div class="kpi-strip">
+  <div class="kpi k1"><div class="kl">TV Total</div><div class="kv">371</div><div class="ku">Jan–Jun 2026</div></div>
+  <div class="kpi k2"><div class="kl">ME Total</div><div class="kv">254</div><div class="ku">Jan–Jun 2026</div></div>
+  <div class="kpi k3"><div class="kl">Produção Total</div><div class="kv">625</div><div class="ku">TV + ME acumulado</div></div>
+  <div class="kpi k4"><div class="kl">Eq. Álvaro Pedro</div><div class="kv">318</div><div class="ku">196 TV · 122 ME</div></div>
+  <div class="kpi k5"><div class="kl">Eq. Raquel Bernardo</div><div class="kv">177</div><div class="ku">104 TV · 73 ME</div></div>
+  <div class="kpi k6"><div class="kl">Eq. Rafael Peixoto</div><div class="kv">130</div><div class="ku">71 TV · 59 ME</div></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="showTab('vendedores')">🏅 Por Vendedor</button>
+  <button class="tab-btn" onclick="showTab('equipas')">🏆 Por Equipa</button>
+</div>
+
+<!-- TAB: VENDEDORES -->
+<div id="tab-vendedores" class="tab-panel active">
+<div class="section">
+  <div class="sh">Ranking Individual · TV + ME Líquidas · Jan–Jun 2026</div>
+  <table class="lb">
+    <thead><tr>
+      <th class="rc">#</th>
+      <th>Vendedor</th>
+      <th class="c" style="color:var(--accent)">TV</th>
+      <th class="c" style="color:var(--accent2)">ME</th>
+      <th class="c" style="color:var(--gold)">Total</th>
+      <th class="c conv-pct">Conv.</th>
+      <th class="bar-cell"></th>
+      <th class="c" style="width:36px"></th>
+    </tr></thead>
+    <tbody id="seller-tbody"></tbody>
+  </table>
+</div>
+</div>
+
+<!-- TAB: EQUIPAS -->
+<div id="tab-equipas" class="tab-panel">
+<div class="section">
+  <div class="sh">Resultados por Equipa · Jan–Jun 2026</div>
+  <div class="team-grid" id="team-grid"></div>
+  <div class="sh">Detalhe por Equipa</div>
+  <div id="team-detail-tables"></div>
+</div>
+</div>
+
+<script>
+const SELLERS = [
+  {name:"Rafael Peixoto",team:"Rafael Peixoto",tv:55,me:49,monthly:{202601:{tv:14,me:11},202602:{tv:8,me:11},202603:{tv:16,me:11},202604:{tv:8,me:8},202605:{tv:9,me:8},202606:{tv:0,me:0}}},
+  {name:"Rodrigo Silva",team:"Raquel Bernardo",tv:43,me:32,monthly:{202601:{tv:9,me:6},202602:{tv:5,me:6},202603:{tv:8,me:4},202604:{tv:8,me:6},202605:{tv:12,me:9},202606:{tv:1,me:1}}},
+  {name:"Márcio Xavier",team:"Álvaro Pedro",tv:40,me:25,monthly:{202601:{tv:12,me:8},202602:{tv:3,me:2},202603:{tv:7,me:4},202604:{tv:8,me:6},202605:{tv:10,me:5},202606:{tv:0,me:0}}},
+  {name:"Pedro Correia",team:"Álvaro Pedro",tv:35,me:18,monthly:{202601:{tv:8,me:5},202602:{tv:7,me:5},202603:{tv:7,me:3},202604:{tv:5,me:1},202605:{tv:8,me:4},202606:{tv:0,me:0}}},
+  {name:"Rita Costa",team:"Álvaro Pedro",tv:34,me:15,monthly:{202601:{tv:9,me:4},202602:{tv:4,me:4},202603:{tv:8,me:3},202604:{tv:6,me:3},202605:{tv:7,me:1},202606:{tv:0,me:0}}},
+  {name:"Diogo Pereira",team:"Álvaro Pedro",tv:30,me:25,monthly:{202601:{tv:0,me:0},202602:{tv:7,me:7},202603:{tv:8,me:7},202604:{tv:8,me:3},202605:{tv:7,me:8},202606:{tv:0,me:0}}},
+  {name:"Catarina Lopes",team:"Álvaro Pedro",tv:30,me:20,monthly:{202601:{tv:0,me:0},202602:{tv:0,me:0},202603:{tv:5,me:5},202604:{tv:13,me:6},202605:{tv:12,me:9},202606:{tv:0,me:0}}},
+  {name:"Raquel Bernardo",team:"Raquel Bernardo",tv:24,me:19,monthly:{202601:{tv:9,me:7},202602:{tv:0,me:6},202603:{tv:7,me:1},202604:{tv:3,me:1},202605:{tv:5,me:4},202606:{tv:0,me:0}}},
+  {name:"Diana Almeida",team:"Raquel Bernardo",tv:23,me:10,monthly:{202601:{tv:0,me:0},202602:{tv:6,me:5},202603:{tv:4,me:0},202604:{tv:7,me:3},202605:{tv:6,me:2},202606:{tv:0,me:0}}},
+  {name:"João Mota",team:"Álvaro Pedro",tv:10,me:7,monthly:{202601:{tv:0,me:0},202602:{tv:0,me:0},202603:{tv:0,me:0},202604:{tv:2,me:1},202605:{tv:8,me:6},202606:{tv:0,me:0}}},
+  {name:"Álvaro Pedro",team:"Álvaro Pedro",tv:10,me:8,monthly:{202601:{tv:2,me:2},202602:{tv:1,me:0},202603:{tv:4,me:5},202604:{tv:0,me:0},202605:{tv:3,me:1},202606:{tv:0,me:0}}},
+  {name:"Maurício Costa",team:"Rafael Peixoto",tv:10,me:4,monthly:{202601:{tv:0,me:0},202602:{tv:0,me:0},202603:{tv:0,me:0},202604:{tv:4,me:2},202605:{tv:6,me:2},202606:{tv:0,me:0}}},
+  {name:"Leandro Amaro",team:"Raquel Bernardo",tv:9,me:9,monthly:{202601:{tv:0,me:0},202602:{tv:0,me:0},202603:{tv:6,me:4},202604:{tv:3,me:5},202605:{tv:0,me:0},202606:{tv:0,me:0}}},
+  {name:"Hugo Soares",team:"Rafael Peixoto",tv:6,me:6,monthly:{202601:{tv:0,me:0},202602:{tv:0,me:0},202603:{tv:0,me:0},202604:{tv:0,me:0},202605:{tv:6,me:6},202606:{tv:0,me:0}}},
+  {name:"Leonardo Espada",team:"Álvaro Pedro",tv:7,me:4,monthly:{202601:{tv:0,me:0},202602:{tv:0,me:0},202603:{tv:0,me:0},202604:{tv:3,me:1},202605:{tv:4,me:3},202606:{tv:0,me:0}}},
+  {name:"Joao Castanheira",team:"Raquel Bernardo",tv:3,me:3,monthly:{202601:{tv:0,me:0},202602:{tv:0,me:0},202603:{tv:0,me:0},202604:{tv:0,me:0},202605:{tv:3,me:3},202606:{tv:0,me:0}}},
+  {name:"Rubia Sousa",team:"Raquel Bernardo",tv:2,me:0,monthly:{202601:{tv:0,me:0},202602:{tv:0,me:0},202603:{tv:0,me:0},202604:{tv:0,me:0},202605:{tv:1,me:0},202606:{tv:1,me:0}}},
+];
+
+const MONTHS = ['202601','202602','202603','202604','202605','202606'];
+const MONTH_LABELS = {202601:'Jan',202602:'Fev',202603:'Mar',202604:'Abr',202605:'Mai',202606:'Jun'};
+const TEAM_CLASS = {'Álvaro Pedro':'ap','Raquel Bernardo':'rb','Rafael Peixoto':'rp'};
+const TEAM_INITIALS = {'Álvaro Pedro':'ÁP','Raquel Bernardo':'RB','Rafael Peixoto':'RP'};
+const MAX_TOTAL = 104;
+
+// Sort by total
+SELLERS.sort((a,b)=>(b.tv+b.me)-(a.tv+a.me));
+
+function initials(name){return name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();}
+
+function rankClass(i){return i===0?'gold':i===1?'silver':i===2?'bronze':'rest';}
+
+// Build seller table
+const tbody = document.getElementById('seller-tbody');
+SELLERS.forEach((s,i)=>{
+  const total = s.tv+s.me;
+  const pct = Math.round(total/MAX_TOTAL*100);
+  const conv = s.tv>0?Math.round(s.me/s.tv*100):0;
+  const tc = TEAM_CLASS[s.team]||'ap';
+
+  const tr = document.createElement('tr');
+  tr.className='lbr';
+  tr.innerHTML=`
+    <td class="rc"><span class="rn ${rankClass(i)}">${i+1}</span></td>
+    <td><div class="sl">
+      <div class="av team-${tc}">${initials(s.name)}</div>
+      <div><div class="sn">${s.name}</div><div class="st">Eq. ${s.team}</div></div>
+    </div></td>
+    <td class="tvn">${s.tv}</td>
+    <td class="men">${s.me}</td>
+    <td class="totn">${total}</td>
+    <td class="conv-pct" style="text-align:center"><span style="font-size:13px;font-weight:700;color:${conv>=60?'var(--green)':conv>=40?'var(--gold)':'var(--muted)'}">${conv}%</span></td>
+    <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:${pct}%"></div></div></td>
+    <td style="text-align:center"><button class="expand-btn" onclick="toggleMonthly(this,${i})" title="Ver por mês">▶</button></td>
+  `;
+  tbody.appendChild(tr);
+
+  // Monthly row
+  const mtr = document.createElement('tr');
+  mtr.className='monthly-row';
+  mtr.id=`monthly-${i}`;
+  const mtd = document.createElement('td');
+  mtd.colSpan=8;
+  mtd.className='monthly-inner';
+  const pills = MONTHS.map(m=>{
+    const d=s.monthly[m]||{tv:0,me:0};
+    const active=(d.tv+d.me)>0;
+    return `<div class="mth-pill" style="${active?'':'opacity:.35'}">
+      <div class="mth-label">${MONTH_LABELS[m]}</div>
+      <div class="mth-vals"><span class="mth-tv">${d.tv}</span><span class="mth-sep">·</span><span class="mth-me">${d.me}</span></div>
+    </div>`;
+  }).join('');
+  mtd.innerHTML=`<div class="mth-grid">${pills}</div>`;
+  mtr.appendChild(mtd);
+  tbody.appendChild(mtr);
+});
+
+function toggleMonthly(btn,idx){
+  const row=document.getElementById('monthly-'+idx);
+  const open=row.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+
+// TEAMS tab
+const TEAMS_DATA = {
+  'Álvaro Pedro':{tv:196,me:122,members:['Márcio Xavier','Pedro Correia','Rita Costa','Diogo Pereira','Catarina Lopes','João Mota','Álvaro Pedro','Leonardo Espada'],monthly:{202601:{tv:31,me:19},202602:{tv:22,me:18},202603:{tv:39,me:27},202604:{tv:45,me:21},202605:{tv:59,me:37},202606:{tv:0,me:0}}},
+  'Raquel Bernardo':{tv:104,me:73,members:['Rodrigo Silva','Raquel Bernardo','Diana Almeida','Leandro Amaro','Joao Castanheira','Rubia Sousa'],monthly:{202601:{tv:18,me:13},202602:{tv:11,me:17},202603:{tv:25,me:9},202604:{tv:21,me:15},202605:{tv:27,me:18},202606:{tv:2,me:1}}},
+  'Rafael Peixoto':{tv:71,me:59,members:['Rafael Peixoto','Maurício Costa','Hugo Soares'],monthly:{202601:{tv:14,me:11},202602:{tv:8,me:11},202603:{tv:16,me:11},202604:{tv:12,me:10},202605:{tv:21,me:16},202606:{tv:0,me:0}}},
+};
+const GRAND_TOTAL = 318+177+130;
+
+const teamGrid = document.getElementById('team-grid');
+const teamDetail = document.getElementById('team-detail-tables');
+const TEAM_ORDER = ['Álvaro Pedro','Raquel Bernardo','Rafael Peixoto'];
+
+TEAM_ORDER.forEach(tname=>{
+  const t=TEAMS_DATA[tname];
+  const tc=TEAM_CLASS[tname];
+  const total=t.tv+t.me;
+  const pct=Math.round(total/GRAND_TOTAL*100);
+  const conv=Math.round(t.me/t.tv*100);
+
+  // Card
+  const card=document.createElement('div');
+  card.className=`team-card tc-${tc}`;
+  card.innerHTML=`<div class="tc-body">
+    <div class="tc-name">${tname}</div>
+    <div class="tc-sub">${t.members.length} comerciais · Conv. ${conv}%</div>
+    <div class="tc-stats">
+      <div class="tc-stat stv"><div class="tc-stat-v">${t.tv}</div><div class="tc-stat-l">TV</div></div>
+      <div class="tc-stat sme"><div class="tc-stat-v">${t.me}</div><div class="tc-stat-l">ME</div></div>
+      <div class="tc-stat stot"><div class="tc-stat-v">${total}</div><div class="tc-stat-l">Total</div></div>
+    </div>
+    <div class="tc-bar-wrap"><div class="tc-bar-fill" style="width:${pct}%"></div></div>
+    <div class="tc-pct">${pct}% da produção total</div>
+    <div class="tc-monthly">${MONTHS.map(m=>{const d=t.monthly[m]||{tv:0,me:0};return `<div class="tcm-pill"><div class="tcm-l">${MONTH_LABELS[m]}</div><div class="tcm-tv">${d.tv}</div><div class="tcm-me">${d.me}</div></div>`;}).join('')}</div>
+  </div>`;
+  teamGrid.appendChild(card);
+
+  // Detail table
+  const wrap=document.createElement('div');
+  wrap.style.marginBottom='32px';
+  const members=SELLERS.filter(s=>s.team===tname).sort((a,b)=>(b.tv+b.me)-(a.tv+a.me));
+  wrap.innerHTML=`<div class="sh">${tname}</div>
+  <table class="lb">
+    <thead><tr>
+      <th class="rc">#</th><th>Vendedor</th>
+      <th class="c" style="color:var(--accent)">TV</th>
+      <th class="c" style="color:var(--accent2)">ME</th>
+      <th class="c" style="color:var(--gold)">Total</th>
+      <th class="c conv-pct">Conv.</th>
+    </tr></thead>
+    <tbody>${members.map((s,i)=>{
+      const tot=s.tv+s.me;
+      const conv=s.tv>0?Math.round(s.me/s.tv*100):0;
+      return `<tr class="lbr">
+        <td class="rc"><span class="rn ${rankClass(i)}">${i+1}</span></td>
+        <td><div class="sl"><div class="av team-${tc}">${initials(s.name)}</div><div><div class="sn">${s.name}</div></div></div></td>
+        <td class="tvn">${s.tv}</td><td class="men">${s.me}</td><td class="totn">${tot}</td>
+        <td class="conv-pct" style="text-align:center"><span style="font-size:13px;font-weight:700;color:${conv>=60?'var(--green)':conv>=40?'var(--gold)':'var(--muted)'}">${conv}%</span></td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+  teamDetail.appendChild(wrap);
+});
+
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body></html>
