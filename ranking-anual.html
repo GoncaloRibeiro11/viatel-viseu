@@ -241,6 +241,14 @@ const MAX_TOTAL = 104;
 // Sort by total
 SELLERS.sort((a,b)=>(b.tv+b.me)-(a.tv+a.me));
 
+function avatarHtml(name, teamClass) {
+  var photo = PHOTOS[name];
+  if (photo) {
+    return '<div class="av ' + teamClass + '" style="padding:0;overflow:hidden"><img src="' + photo + '" style="width:100%;height:100%;object-fit:cover;border-radius:11px"></div>';
+  }
+  return '<div class="av ' + teamClass + '">' + initials(name) + '</div>';
+}
+
 function initials(name){return name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();}
 
 function rankClass(i){return i===0?'gold':i===1?'silver':i===2?'bronze':'rest';}
@@ -258,7 +266,7 @@ SELLERS.forEach((s,i)=>{
   tr.innerHTML=`
     <td class="rc"><span class="rn ${rankClass(i)}">${i+1}</span></td>
     <td><div class="sl">
-      <div class="av team-${tc}" style="${PHOTOS[s.name]?'padding:0;overflow:hidden':''}">${PHOTOS[s.name]?`<img src="${PHOTOS[s.name]}" style="width:100%;height:100%;object-fit:cover;border-radius:11px">`:initials(s.name)}</div>
+      ${avatarHtml(s.name,'team-'+tc)}
       <div><div class="sn">${s.name}</div><div class="st">Eq. ${s.team}</div></div>
     </div></td>
     <td class="tvn">${s.tv}</td>
@@ -351,7 +359,7 @@ TEAM_ORDER.forEach(tname=>{
       const conv=s.tv>0?Math.round(s.me/s.tv*100):0;
       return `<tr class="lbr">
         <td class="rc"><span class="rn ${rankClass(i)}">${i+1}</span></td>
-        <td><div class="sl"><div class="av team-${tc}" style="${PHOTOS[s.name]?'padding:0;overflow:hidden':''}">${PHOTOS[s.name]?`<img src="${PHOTOS[s.name]}" style="width:100%;height:100%;object-fit:cover;border-radius:11px">`:initials(s.name)}</div><div><div class="sn">${s.name}</div></div></div></td>
+        <td><div class="sl">${avatarHtml(s.name,'team-'+tc)}<div><div class="sn">${s.name}</div></div></div></td>
         <td class="tvn">${s.tv}</td><td class="men">${s.me}</td><td class="totn">${tot}</td>
         <td class="conv-pct" style="text-align:center"><span style="font-size:13px;font-weight:700;color:${conv>=60?'var(--green)':conv>=40?'var(--gold)':'var(--muted)'}">${conv}%</span></td>
       </tr>`;
