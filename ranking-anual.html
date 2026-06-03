@@ -368,4 +368,11 @@ TEAM_ORDER.forEach(tname=>{
   teamDetail.appendChild(wrap);
 });
 
-functi
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body></html>
