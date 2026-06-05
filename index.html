@@ -5,6 +5,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#060b12;--surface:#0d1825;--border:rgba(255,255,255,.08);--accent:#00c8f0;--accent2:#ff5f2e;--gold:#f5c518;--green:#00e676;--text:#eef3fa;--muted:#9aafc4}
+body.light{--bg:#f0f4f8;--surface:#ffffff;--border:rgba(0,0,0,.10);--text:#0d1825;--muted:#5a6e84;background-image:none!important}
+body.light .card{background:#fff;border-color:rgba(0,0,0,.10)}
+body.light .mbtn{background:rgba(0,0,0,.04);color:#5a6e84}
+body.light .doc-card{background:rgba(0,0,0,.03);border-color:rgba(0,0,0,.08)}
+body.light .footer{border-color:rgba(0,0,0,.08)}
+.theme-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.theme-btn:hover{background:rgba(0,200,240,.1);border-color:rgba(0,200,240,.3);color:var(--accent)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;background-image:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(0,200,240,.10) 0%,transparent 60%)}
 .header{display:flex;align-items:center;justify-content:space-between;padding:24px 48px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:12px;position:relative}
@@ -119,7 +126,10 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 </script>
 <div class="header">
   <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div></div>
-  <div class="live"><div class="ld"></div> Dados Reais &nbsp;&middot;&nbsp; VPP</div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="live"><div class="ld"></div> Dados Reais &nbsp;&middot;&nbsp; VPP</div>
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">&#9728;&#65039; Claro</button>
+  </div>
 </div>
 <div class="hero">
   <div class="hero-title">RESULTADOS<br>COMERCIAIS</div>
@@ -383,6 +393,19 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 </div>
 <div class="footer">Viatel Viseu &nbsp;&middot;&nbsp; Coordenação <span>Gonçalo Ribeiro</span> &nbsp;&middot;&nbsp; Actualizado 05/06/2026</div>
 <script>
+/* ── TEMA CLARO/ESCURO ── */
+function toggleTheme(){
+  var light=document.body.classList.toggle('light');
+  localStorage.setItem('vv_theme',light?'light':'dark');
+  document.getElementById('theme-btn').innerHTML=light?'&#127769;&#65039; Escuro':'&#9728;&#65039; Claro';
+}
+(function(){
+  if(localStorage.getItem('vv_theme')==='light')
+    document.body.classList.add('light');
+    var b=document.getElementById('theme-btn');
+    if(b)b.innerHTML='&#127769;&#65039; Escuro';
+  }
+})();
 /* ── NAVEGAÇÃO PRINCIPAL ── */
 function showSection(sec){
   document.querySelectorAll('.main-sec').forEach(s=>s.style.display='none');
@@ -390,18 +413,17 @@ function showSection(sec){
   document.getElementById('sec-'+sec).style.display='block';
   document.getElementById('mtab-'+sec).classList.add('active');
 }
-/* ── SUB-TABS DOCUMENTOS ── */
 function showDoc(tab){
   document.querySelectorAll('.doc-panel').forEach(p=>p.style.display='none');
   document.querySelectorAll('[id^="dtab-"]').forEach(t=>t.classList.remove('active'));
   document.getElementById('doc-'+tab).style.display='block';
   document.getElementById('dtab-'+tab).classList.add('active');
 }
-/* ── NAVEGAÇÃO MESES ── */
 function showMonth(ym){
   document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.mbtn').forEach(b=>b.classList.remove('active'));
   document.getElementById('panel-'+ym).classList.add('active');
+  document.getElementById('btn-'+ym).classList.add('active');
 }
 </script>
 </body></html>
