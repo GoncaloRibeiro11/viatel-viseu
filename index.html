@@ -39,6 +39,24 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
 @media(max-width:900px){.cards{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.cards{grid-template-columns:1fr}}
+/* ── MOBILE ── */
+@media(max-width:700px){
+  .header{padding:14px 18px;gap:8px}
+  .brand{font-size:20px;letter-spacing:2px}
+  .hero{padding:24px 16px 14px}
+  .hero-title{font-size:36px;letter-spacing:3px}
+  .hist-section{padding:0 14px 40px}
+  #tab-nav{padding:0 14px 6px;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+  #tab-nav::-webkit-scrollbar{display:none}
+  .main-tab{white-space:nowrap;font-size:12px;padding:7px 12px;flex-shrink:0}
+  .month-nav{gap:6px}
+  .mbtn{font-size:13px;padding:6px 10px}
+  .cards{gap:14px}
+  .card-top{padding:20px 18px 14px}
+  .card-bottom{padding:12px 18px}
+  .card-title{font-size:20px;letter-spacing:2px}
+  .theme-btn{font-size:11px;padding:5px 10px}
+}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;text-decoration:none;color:var(--text);transition:transform .18s,box-shadow .18s;display:block}
 .card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
 .card-top{padding:28px 28px 20px;position:relative}
@@ -128,7 +146,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div></div>
   <div style="display:flex;align-items:center;gap:10px">
     <div class="live"><div class="ld"></div> Dados Reais &nbsp;&middot;&nbsp; VPP</div>
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">&#9728;&#65039; Claro</button>
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">&#127769;&#65039; Escuro</button>
   </div>
 </div>
 <div class="hero">
@@ -136,7 +154,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   <div class="hero-sub">Coordena&ccedil;&atilde;o Gon&ccedil;alo Ribeiro &nbsp;&middot;&nbsp; Junho 2026</div>
 </div>
 <!-- NAVEGAÇÃO PRINCIPAL -->
-<div style="max-width:860px;margin:0 auto;padding:0 24px 8px;display:flex;gap:10px">
+<div id="tab-nav" style="max-width:860px;margin:0 auto;padding:0 24px 8px;display:flex;gap:10px">
   <button class="main-tab active" onclick="showSection('resultados')" id="mtab-resultados">📊 Resultados</button>
   <button class="main-tab" onclick="showSection('documentos')" id="mtab-documentos">📦 Produto</button>
   <a href="ranking-anual.html" class="main-tab" style="text-decoration:none">🏅 Ranking Anual</a>
@@ -397,13 +415,13 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 function toggleTheme(){
   var light=document.body.classList.toggle('light');
   localStorage.setItem('vv_theme',light?'light':'dark');
-  document.getElementById('theme-btn').innerHTML=light?'&#127769;&#65039; Escuro':'&#9728;&#65039; Claro';
+  document.getElementById('theme-btn').innerHTML=light?'&#9728;&#65039; Claro':'&#127769;&#65039; Escuro';
 }
 (function(){
-  if(localStorage.getItem('vv_theme')==='light')
+  if(localStorage.getItem('vv_theme')==='light'){
     document.body.classList.add('light');
     var b=document.getElementById('theme-btn');
-    if(b)b.innerHTML='&#127769;&#65039; Escuro';
+    if(b)b.innerHTML='&#9728;&#65039; Claro';
   }
 })();
 /* ── NAVEGAÇÃO PRINCIPAL ── */
