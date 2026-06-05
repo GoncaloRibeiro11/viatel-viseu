@@ -20,8 +20,49 @@
 .nav-mbtn.nav-active{background:rgba(0,200,240,.12);border-color:rgba(0,200,240,.5);color:var(--accent)}
 .nav-mbtn.nav-closed{color:rgba(154,175,196,.45)}
 .nav-mbtn.nav-closed:hover{color:var(--muted);background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
+
+/* ── TEMA CLARO ── */
+body.light{--bg:#f0f4f8;--surface:#ffffff;--border:rgba(0,0,0,.10);--text:#0d1825;--muted:#5a6e84;background-image:none!important}
+body.light .kpi{background:#fff}
+body.light .card{background:#fff}
+body.light .lbr:hover{background:rgba(0,0,0,.02)}
+body.light .lbr{border-color:rgba(0,0,0,.05)}
+body.light .lb thead tr{border-color:rgba(0,0,0,.08)}
+body.light .sh::after{background:rgba(0,0,0,.08)}
+body.light .pw,.body.light .wb{background:rgba(0,0,0,.06)}
+body.light .kpi-strip{background:rgba(0,0,0,.06)}
+body.light .atual-row{background:rgba(0,200,240,.04)}
+body.light .wr{border-color:rgba(0,0,0,.05)}
+body.light .wt thead th{color:#5a6e84}
+body.light .month-nav-bar{background:rgba(255,255,255,.8)}
+body.light .nav-back{border-color:rgba(0,0,0,.15);color:#5a6e84}
+body.light .nav-back:hover{color:var(--accent)}
+body.light .nav-mbtn.nav-closed{color:rgba(90,110,132,.45)}
+.theme-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:'DM Sans',sans-serif;flex-shrink:0}
+.theme-btn:hover{background:rgba(0,200,240,.1);border-color:rgba(0,200,240,.3);color:var(--accent)}
+
+/* -- TEMA CLARO -- */
+body.light{--bg:#f0f4f8;--surface:#ffffff;--border:rgba(0,0,0,.10);--text:#0d1825;--muted:#5a6e84;background-image:none!important}
+body.light .kpi,body.light .card,body.light .right>.card{background:#fff}
+body.light .kpi-strip{background:rgba(0,0,0,.06)}
+body.light .lbr:hover{background:rgba(0,0,0,.02)}
+body.light .lbr,body.light .wr{border-color:rgba(0,0,0,.05)}
+body.light .lb thead tr{border-color:rgba(0,0,0,.08)}
+body.light .sh::after{background:rgba(0,0,0,.08)}
+body.light .pw,.body.light .wb{background:rgba(0,0,0,.06)}
+body.light .atual-row{background:rgba(0,200,240,.04)}
+body.light .month-nav-bar{background:rgba(255,255,255,.9)}
+body.light .nav-back{border-color:rgba(0,0,0,.15);color:#5a6e84}
+body.light .nav-mbtn.nav-closed{color:rgba(90,110,132,.45)}
+body.light .tba{background:rgba(0,200,240,.04);border-color:rgba(0,200,240,.15)}
+body.light .tbr{background:rgba(255,95,46,.04);border-color:rgba(255,95,46,.15)}
+body.light .card{border-color:rgba(0,0,0,.08)}
+body.light .ct{border-color:rgba(0,0,0,.08)}
+body.light .wr:last-child{border:none}
+.theme-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:'DM Sans',sans-serif;flex-shrink:0}
+.theme-btn:hover{background:rgba(0,200,240,.1);border-color:rgba(0,200,240,.3);color:var(--accent)}
 </style></head><body>
-<div class="month-nav-bar"><a href="index.html" class="nav-back">← Início</a></div>
+<div class="month-nav-bar"><a href="index.html" class="nav-back">← Início</a><button id="vv-theme-btn" class="theme-btn" onclick="toggleTheme()" style="margin-left:auto">&#127769;&#65039; Escuro</button></div>
 <div class="header">
   <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div></div>
   <div class="h-center"><div class="h-title">ANULADOS &amp; RECUPERAÇÃO</div><div class="h-sub">Análise de anulações MEOFIBRA · MEOSat</div></div>
