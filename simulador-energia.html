@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador MEO Energia 2025 · Viatel Viseu</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060b12;--surface:#0d1825;--surface2:#111e2e;
+  --border:rgba(255,255,255,.08);--accent:#00c8f0;
+  --green:#00e676;--muted:#9aafc4;--text:#eef3fa;
+  --meo:#003087;--meo-green:#00c27a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;
+  background-image:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(0,200,240,.08) 0%,transparent 60%)}
+
+/* ── HEADER ── */
+.header{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;
+  border-bottom:1px solid var(--border);flex-wrap:wrap;gap:12px;position:relative}
+.header::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.4}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 16px var(--accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.brand{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px}
+.brand em{color:var(--accent);font-style:normal}
+.back-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);border-radius:10px;padding:8px 18px;font-size:13px;
+  font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;cursor:pointer}
+.back-btn:hover{background:rgba(0,200,240,.08);border-color:rgba(0,200,240,.3);color:var(--accent)}
+
+/* ── HERO ── */
+.hero{text-align:center;padding:36px 24px 20px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,194,122,.1);
+  border:1px solid rgba(0,194,122,.3);border-radius:20px;padding:5px 14px;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--meo-green);font-weight:600;margin-bottom:14px}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,6vw,52px);
+  letter-spacing:5px;line-height:1;
+  background:linear-gradient(135deg,#fff 30%,var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+/* ── TABS ── */
+.tab-row{display:flex;gap:6px;overflow-x:auto;padding:0 24px;max-width:1080px;margin:0 auto 0}
+.tab-btn{background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:10px 10px 0 0;padding:9px 18px;font-family:'DM Sans',sans-serif;
+  font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;
+  white-space:nowrap;transition:all .15s}
+.tab-btn:hover:not(.active){background:rgba(0,200,240,.06);border-color:rgba(0,200,240,.2);color:var(--accent)}
+.tab-btn.active{background:var(--surface);border-color:rgba(0,200,240,.4);color:var(--accent);
+  box-shadow:0 0 14px rgba(0,200,240,.1)}
+
+/* ── PANEL ── */
+.container{max-width:1080px;margin:0 auto;padding:0 24px 60px}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:0 12px 12px 12px;
+  padding:28px;display:none;border-top-color:rgba(0,200,240,.3)}
+.panel.active{display:block}
+
+/* ── GRID ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:680px){.two-col{grid-template-columns:1fr}}
+
+/* ── SECTION HEADER ── */
+.sec-hdr{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--muted);font-weight:700;margin-bottom:13px;padding-bottom:7px;
+  border-bottom:1px solid var(--border)}
+.sec-hdr.mt{margin-top:20px}
+
+/* ── FORM ── */
+.fr{margin-bottom:12px}
+label{display:block;font-size:12px;color:var(--muted);font-weight:600;
+  margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase}
+
+.iw{display:flex;align-items:stretch;border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;transition:border-color .15s;background:var(--surface2)}
+.iw:focus-within{border-color:rgba(0,200,240,.5);box-shadow:0 0 0 2px rgba(0,200,240,.06)}
+.iw input{flex:1;padding:9px 12px;border:none;outline:none;font-size:14px;
+  background:transparent;color:var(--text);min-width:0;font-family:'DM Sans',sans-serif}
+.iw .u{padding:9px 11px;background:rgba(255,255,255,.04);color:var(--muted);
+  font-size:11px;font-weight:600;border-left:1px solid var(--border);
+  display:flex;align-items:center;white-space:nowrap;letter-spacing:.5px}
+
+select{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;
+  font-size:14px;background:var(--surface2);color:var(--text);outline:none;
+  font-family:'DM Sans',sans-serif;transition:border-color .15s}
+select:focus{border-color:rgba(0,200,240,.5);box-shadow:0 0 0 2px rgba(0,200,240,.06)}
+
+/* ── MEO INFO BOX ── */
+.meo-box{background:rgba(0,48,135,.15);border:1px solid rgba(0,200,240,.2);
+  border-left:3px solid var(--accent);border-radius:10px;padding:14px 16px;margin-bottom:16px}
+.mbt{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;
+  color:var(--accent);margin-bottom:10px}
+.pg{display:flex;flex-wrap:wrap;gap:8px}
+.pi{background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:8px;padding:8px 12px;min-width:100px}
+.pi .pil{font-size:10px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+.pi .piv{font-size:14px;font-weight:700;color:var(--accent);font-family:'Bebas Neue',sans-serif;
+  letter-spacing:1px;margin-top:2px}
+
+/* ── RESULTS ── */
+.results{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+.res-title{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:14px;
+  letter-spacing:.5px;text-transform:uppercase}
+
+table.cmp{width:100%;border-collapse:collapse;font-size:13px}
+table.cmp th{padding:9px 11px;text-align:left;background:rgba(0,48,135,.3);
+  color:var(--accent);font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  border-bottom:1px solid rgba(0,200,240,.2)}
+table.cmp th:not(:first-child),table.cmp td:not(:first-child){text-align:right}
+table.cmp td{padding:8px 11px;border-bottom:1px solid var(--border);color:var(--text)}
+table.cmp tr:last-child td{border-bottom:none}
+table.cmp tr.total td{font-weight:700;background:rgba(0,48,135,.2);
+  border-top:1px solid rgba(0,200,240,.3);font-size:14px}
+
+.gs{color:var(--green);font-weight:700}
+.bs{color:#ff6b6b}
+
+.sum-box{margin-top:14px;padding:16px;border-radius:10px;text-align:center}
+.sum-box.good{background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.3)}
+.sum-box.bad {background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.3)}
+.sum-box .sl{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.sum-box .sa{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin:4px 0;letter-spacing:2px}
+.sum-box.good .sa{color:var(--green)}
+.sum-box.bad  .sa{color:#ff6b6b}
+.sum-box .sy{font-size:11px;color:var(--muted)}
+
+/* ── FORMULA BOX ── */
+.fml{background:rgba(0,48,135,.12);border:1px solid rgba(0,200,240,.15);
+  border-radius:8px;padding:13px 16px;font-family:'Courier New',monospace;
+  font-size:13px;color:var(--text);margin-bottom:20px;line-height:1.6}
+.fml span{color:var(--muted);font-size:11px}
+
+/* ── NOTE ── */
+.note{font-size:11px;color:var(--muted);margin-top:10px;padding:9px 12px;
+  background:rgba(245,197,24,.06);border-radius:6px;border:1px solid rgba(245,197,24,.2)}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:24px;border-top:1px solid var(--border);
+  font-size:11px;color:var(--muted);letter-spacing:1px;margin-top:20px}
+footer span{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE (partilhado com o site principal) -->
+<div id="site-gate" style="position:fixed;inset:0;z-index:99999;background:#060b12;display:flex;align-items:center;justify-content:center;flex-direction:column">
+  <div style="background:#0d1825;border:1px solid rgba(0,200,240,.2);border-radius:16px;padding:44px 52px;display:flex;flex-direction:column;align-items:center;gap:18px;max-width:360px;width:90%;box-shadow:0 24px 64px rgba(0,0,0,.7)">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:10px;height:10px;background:#00c8f0;border-radius:50%;box-shadow:0 0 14px #00c8f0"></div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:4px;color:#eef3fa">VIATEL <em style="color:#00c8f0;font-style:normal">VISEU</em></div>
+    </div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#9aafc4;text-align:center">Acesso Reservado · Coordenação</div>
+    <input id="sg-pw" type="password" placeholder="Password" autocomplete="off"
+      style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:15px;color:#fff;outline:none;text-align:center;letter-spacing:3px;box-sizing:border-box;transition:border-color .2s"
+      onkeydown="if(event.key==='Enter')sgCheck()">
+    <button onclick="sgCheck()"
+      style="width:100%;background:rgba(0,200,240,.15);border:1px solid rgba(0,200,240,.4);border-radius:10px;padding:13px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#00c8f0;cursor:pointer;letter-spacing:1px;transition:all .2s">
+      ENTRAR
+    </button>
+    <div id="sg-err" style="font-size:12px;color:#ff6b6b;min-height:16px;text-align:center"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var PK='VmlhdGVsKjIwMA==',SK='viatel_auth';
+  function sgCheck(){
+    var v=document.getElementById('sg-pw').value;
+    try{
+      if(btoa(unescape(encodeURIComponent(v)))===PK){
+        sessionStorage.setItem(SK,'1');
+        document.getElementById('site-gate').style.display='none';
+      }else{
+        document.getElementById('sg-err').textContent='Password incorrecta.';
+        document.getElementById('sg-pw').value='';
+        document.getElementById('sg-pw').focus();
+      }
+    }catch(e){
+      document.getElementById('sg-err').textContent='Password incorrecta.';
+      document.getElementById('sg-pw').value='';
+    }
+  }
+  window.sgCheck=sgCheck;
+  if(sessionStorage.getItem(SK)==='1'){
+    document.getElementById('site-gate').style.display='none';
+  }else{
+    setTimeout(function(){document.getElementById('sg-pw').focus();},100);
+  }
+})();
+</script>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">
+    <div class="logo-dot"></div>
+    <div class="brand">VIATEL <em>VISEU</em></div>
+  </div>
+  <a href="index.html" class="back-btn">← Voltar ao Dashboard</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">⚡ Tarifário Jan/25 · Preços s/ IVA</div>
+  <div class="hero-title">SIMULADOR<br>MEO ENERGIA</div>
+  <div class="hero-sub">Compare a fatura atual com as tarifas MEO Energia 2025</div>
+</div>
+
+<!-- TABS -->
+<div class="tab-row">
+  <button class="tab-btn active" onclick="switchTab('simples',this)">⚡ Simples</button>
+  <button class="tab-btn" onclick="switchTab('bihoraria',this)">🌙 Bi-Horária</button>
+  <button class="tab-btn" onclick="switchTab('trihoraria',this)">📊 Tri-Horária</button>
+  <button class="tab-btn" onclick="switchTab('bte',this)">🏭 BTE Tetra-Horária</button>
+  <button class="tab-btn" onclick="switchTab('dinamica',this)">📈 Tarifa Dinâmica</button>
+</div>
+
+<div class="container">
+
+  <!-- ═══════════ SIMPLES ═══════════ -->
+  <div id="panel-simples" class="panel active">
+    <div class="two-col">
+      <div>
+        <div class="sec-hdr">Configuração</div>
+        <div class="fr">
+          <label>Potência Contratada</label>
+          <select id="s-kva" onchange="calcSimples()">
+            <option value="1.15">1.15 kVA</option><option value="2.3">2.30 kVA</option>
+            <option value="3.45">3.45 kVA</option><option value="4.6">4.60 kVA</option>
+            <option value="5.75">5.75 kVA</option><option value="6.9">6.90 kVA</option>
+            <option value="10.35" selected>10.35 kVA</option><option value="13.8">13.80 kVA</option>
+            <option value="17.25">17.25 kVA</option><option value="20.7">20.70 kVA</option>
+          </select>
+        </div>
+        <div class="fr">
+          <label>Serviço</label>
+          <select id="s-svc" onchange="calcSimples()">
+            <option value="M5M4">M5/M4</option><option value="M3M2">M3/M2</option><option value="Outros">Outros</option>
+          </select>
+        </div>
+        <div class="fr">
+          <label>Forma de Pagamento</label>
+          <select id="s-pag" onchange="calcSimples()">
+            <option value="DDFE">DD + Fatura Eletrónica (DDFE)</option>
+            <option value="DDFP">DD + Fatura Papel (DDFP) +0.01€</option>
+            <option value="MBFP">MB + Fatura Papel (MBFP) +0.02€</option>
+          </select>
+        </div>
+        <div class="fr">
+          <label>Nº de Dias</label>
+          <div class="iw"><input type="number" id="s-dias" value="31" min="1" max="31" oninput="calcSimples()"><span class="u">DIAS</span></div>
+        </div>
+        <div class="fr">
+          <label>Consumo</label>
+          <div class="iw"><input type="number" id="s-cons" value="480" min="0" oninput="calcSimples()"><span class="u">kWh</span></div>
+        </div>
+        <div class="sec-hdr mt">Preços Atuais (Operador Atual)</div>
+        <div class="fr">
+          <label>Taxa de Potência atual</label>
+          <div class="iw"><input type="number" id="s-pot-a" value="0.8427" step="0.0001" oninput="calcSimples()"><span class="u">€/DIA</span></div>
+        </div>
+        <div class="fr">
+          <label>Energia simples atual</label>
+          <div class="iw"><input type="number" id="s-en-a" value="0.1675" step="0.0001" oninput="calcSimples()"><span class="u">€/kWh</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="meo-box"><div class="mbt">Tarifas MEO Energia</div><div class="pg" id="s-tags"></div></div>
+        <div class="results"><div class="res-title">📊 Comparação Mensal</div><div id="s-tbl"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ BI-HORÁRIA ═══════════ -->
+  <div id="panel-bihoraria" class="panel">
+    <div class="two-col">
+      <div>
+        <div class="sec-hdr">Configuração</div>
+        <div class="fr">
+          <label>Potência Contratada</label>
+          <select id="b-kva" onchange="calcBi()">
+            <option value="3.45">3.45 kVA</option><option value="4.6">4.60 kVA</option>
+            <option value="5.75">5.75 kVA</option><option value="6.9" selected>6.90 kVA</option>
+            <option value="10.35">10.35 kVA</option><option value="13.8">13.80 kVA</option>
+            <option value="17.25">17.25 kVA</option><option value="20.7">20.70 kVA</option>
+          </select>
+        </div>
+        <div class="fr">
+          <label>Serviço</label>
+          <select id="b-svc" onchange="calcBi()">
+            <option value="M5M4">M5/M4</option><option value="M3M2">M3/M2</option><option value="Outros">Outros</option>
+          </select>
+        </div>
+        <div class="fr">
+          <label>Forma de Pagamento</label>
+          <select id="b-pag" onchange="calcBi()">
+            <option value="DDFE">DD + Fatura Eletrónica (DDFE)</option>
+            <option value="DDFP">DD + Fatura Papel (DDFP) +0.01€</option>
+            <option value="MBFP">MB + Fatura Papel (MBFP) +0.02€</option>
+          </select>
+        </div>
+        <div class="fr">
+          <label>Nº de Dias</label>
+          <div class="iw"><input type="number" id="b-dias" value="31" min="1" max="31" oninput="calcBi()"><span class="u">DIAS</span></div>
+        </div>
+        <div class="fr">
+          <label>Consumo Fora Vazio</label>
+          <div class="iw"><input type="number" id="b-fv" value="340" min="0" oninput="calcBi()"><span class="u">kWh</span></div>
+        </div>
+        <div class="fr">
+          <label>Consumo Vazio</label>
+          <div class="iw"><input type="number" id="b-vz" value="276" min="0" oninput="calcBi()"><span class="u">kWh</span></div>
+        </div>
+        <div class="sec-hdr mt">Preços Atuais (Operador Atual)</div>
+        <div class="fr">
+          <label>Taxa de Potência atual</label>
+          <div class="iw"><input type="number" id="b-pot-a" value="0.3396" step="0.0001" oninput="calcBi()"><span class="u">€/DIA</span></div>
+        </div>
+        <div class="fr">
+          <label>Energia Fora Vazio atual</label>
+          <div class="iw"><input type="number" id="b-fv-a" value="0.2008" step="0.0001" oninput="calcBi()"><span class="u">€/kWh</span></div>
+        </div>
+        <div class="fr">
+          <label>Energia Vazio atual</label>
+          <div class="iw"><input type="number" id="b-vz-a" value="0.1094" step="0.0001" oninput="calcBi()"><span class="u">€/kWh</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="meo-box"><div class="mbt">Tarifas MEO Energia</div><div class="pg" id="b-tags"></div></div>
+        <div class="results"><div class="res-title">📊 Comparação Mensal</div><div id="b-tbl"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TRI-HORÁRIA ═══════════ -->
+  <div id="panel-trihoraria" class="panel">
+    <div class="two-col">
+      <div>
+        <div class="sec-hdr">Configuração</div>
+        <div class="fr">
+          <label>Potência Contratada</label>
+          <select id="t-kva" onchange="calcTri()">
+            <option value="27.6" selected>27.60 kVA</option>
+            <option value="34.5">34.50 kVA</option>
+            <option value="41.4">41.40 kVA</option>
+          </select>
+        </div>
+        <div class="fr">
+          <label>Serviço</label>
+          <select id="t-svc" onchange="calcTri()">
+            <option value="M5M4">M5/M4</option><option value="M3M2">M3/M2</option><option value="Outros">Outros</option>
+          </select>
+        </div>
+        <div class="fr">
+          <label>Forma de Pagamento</label>
+          <select id="t-pag" onchange="calcTri()">
+            <option value="DDFE">DD + Fatura Eletrónica (DDFE)</option>
+            <option value="DDFP">DD + Fatura Papel (DDFP) +0.01€</option>
+            <option value="MBFP">MB + Fatura Papel (MBFP) +0.02€</option>
+          </select>
+        </div>
+        <div class="fr">
+          <label>Nº de Dias</label>
+          <div class="iw"><input type="number" id="t-dias" value="28" min="1" max="31" oninput="calcTri()"><span class="u">DIAS</span></div>
+        </div>
+        <div class="fr">
+          <label>Consumo Ponta</label>
+          <div class="iw"><input type="number" id="t-cp" value="28" min="0" oninput="calcTri()"><span class="u">kWh</span></div>
+        </div>
+        <div class="fr">
+          <label>Consumo Cheias</label>
+          <div class="iw"><input type="number" id="t-cc" value="95" min="0" oninput="calcTri()"><span class="u">kWh</span></div>
+        </div>
+        <div class="fr">
+          <label>Consumo Vazio</label>
+          <div class="iw"><input type="number" id="t-cv" value="156" min="0" oninput="calcTri()"><span class="u">kWh</span></div>
+        </div>
+        <div class="sec-hdr mt">Preços Atuais (Operador Atual)</div>
+        <div class="fr">
+          <label>Taxa de Potência atual</label>
+          <div class="iw"><input type="number" id="t-pot-a" value="1.2199" step="0.0001" oninput="calcTri()"><span class="u">€/DIA</span></div>
+        </div>
+        <div class="fr">
+          <label>Energia Ponta atual</label>
+          <div class="iw"><input type="number" id="t-cp-a" value="0.374886" step="0.000001" oninput="calcTri()"><span class="u">€/kWh</span></div>
+        </div>
+        <div class="fr">
+          <label>Energia Cheias atual</label>
+          <div class="iw"><input type="number" id="t-cc-a" value="0.178886" step="0.000001" oninput="calcTri()"><span class="u">€/kWh</span></div>
+        </div>
+        <div class="fr">
+          <label>Energia Vazio atual</label>
+          <div class="iw"><input type="number" id="t-cv-a" value="0.142186" step="0.000001" oninput="calcTri()"><span class="u">€/kWh</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="meo-box"><div class="mbt">Tarifas MEO Energia</div><div class="pg" id="t-tags"></div></div>
+        <div class="results"><div class="res-title">📊 Comparação Mensal</div><div id="t-tbl"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ BTE TETRA-HORÁRIA ═══════════ -->
+  <div id="panel-bte" class="panel">
+    <div class="two-col">
+      <div>
+        <div class="sec-hdr">Configuração · BTE (Baixa Tensão Especial)</div>
+        <div class="note" style="margin-bottom:14px;">DD + Fatura Eletrónica · Fidelização 12 meses · Proposta válida até 30/06/2025</div>
+        <div class="fr"><label>Consumo Ponta</label>
+          <div class="iw"><input type="number" id="bte-cp" value="655" min="0" oninput="calcBTE()"><span class="u">kWh</span></div></div>
+        <div class="fr"><label>Consumo Cheia</label>
+          <div class="iw"><input type="number" id="bte-cc" value="1171.75" min="0" step="0.01" oninput="calcBTE()"><span class="u">kWh</span></div></div>
+        <div class="fr"><label>Consumo Vazio</label>
+          <div class="iw"><input type="number" id="bte-cv" value="535.5" min="0" step="0.01" oninput="calcBTE()"><span class="u">kWh</span></div></div>
+        <div class="fr"><label>Consumo Super Vazio</label>
+          <div class="iw"><input type="number" id="bte-csv" value="282" min="0" oninput="calcBTE()"><span class="u">kWh</span></div></div>
+        <div class="sec-hdr mt">Preços Atuais (Operador Atual)</div>
+        <div class="fr"><label>Energia Ponta atual</label>
+          <div class="iw"><input type="number" id="bte-cp-a" value="0.152878" step="0.000001" oninput="calcBTE()"><span class="u">€/kWh</span></div></div>
+        <div class="fr"><label>Energia Cheia atual</label>
+          <div class="iw"><input type="number" id="bte-cc-a" value="0.143016" step="0.000001" oninput="calcBTE()"><span class="u">€/kWh</span></div></div>
+        <div class="fr"><label>Energia Vazio atual</label>
+          <div class="iw"><input type="number" id="bte-cv-a" value="0.146353" step="0.000001" oninput="calcBTE()"><span class="u">€/kWh</span></div></div>
+        <div class="fr"><label>Energia Super Vazio atual</label>
+          <div class="iw"><input type="number" id="bte-csv-a" value="0.135279" step="0.000001" oninput="calcBTE()"><span class="u">€/kWh</span></div></div>
+        <div class="fr"><label>Financiamento Tarifa Social atual</label>
+          <div class="iw"><input type="number" id="bte-fts" value="4.38" step="0.01" oninput="calcBTE()"><span class="u">€/MÊS</span></div></div>
+      </div>
+      <div>
+        <div class="meo-box">
+          <div class="mbt">Tarifas MEO Energia (BTE)</div>
+          <div class="pg">
+            <div class="pi"><div class="pil">Ponta</div><div class="piv">0.1492 €/kWh</div></div>
+            <div class="pi"><div class="pil">Cheia</div><div class="piv">0.1324 €/kWh</div></div>
+            <div class="pi"><div class="pil">Vazio</div><div class="piv">0.1276 €/kWh</div></div>
+            <div class="pi"><div class="pil">Super Vazio</div><div class="piv">0.1135 €/kWh</div></div>
+            <div class="pi"><div class="pil">Fin. Tar. Social</div><div class="piv">0.00 €/mês</div></div>
+          </div>
+        </div>
+        <div class="results"><div class="res-title">📊 Comparação Mensal</div><div id="bte-tbl"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TARIFA DINÂMICA ═══════════ -->
+  <div id="panel-dinamica" class="panel">
+    <div class="fml">
+      P Energia = (OMIE + K) × (1 + FP) + TAR<br>
+      <span>K = 26 €/MWh · FP = 15% · OMIE = preço mercado ibérico (ajustável)</span>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="sec-hdr">Parâmetros</div>
+        <div class="fr"><label>Preço OMIE (Mercado Ibérico)</label>
+          <div class="iw"><input type="number" id="d-omie" value="60" step="1" min="0" oninput="calcDin()"><span class="u">€/MWh</span></div></div>
+        <div class="fr"><label>Tipo de Horário</label>
+          <select id="d-tipo" onchange="calcDin()">
+            <option value="simples">Simples</option>
+            <option value="bi">Bi-Horário</option>
+            <option value="tri">Tri-Horário</option>
+          </select>
+        </div>
+        <div id="d-cs-wrap">
+          <div class="fr"><label>Consumo</label>
+            <div class="iw"><input type="number" id="d-cs" value="480" min="0" oninput="calcDin()"><span class="u">kWh</span></div></div>
+        </div>
+        <div id="d-bi-wrap" style="display:none">
+          <div class="fr"><label>Consumo Fora Vazio</label>
+            <div class="iw"><input type="number" id="d-cfv" value="340" min="0" oninput="calcDin()"><span class="u">kWh</span></div></div>
+          <div class="fr"><label>Consumo Vazio</label>
+            <div class="iw"><input type="number" id="d-cvz" value="276" min="0" oninput="calcDin()"><span class="u">kWh</span></div></div>
+        </div>
+        <div id="d-tri-wrap" style="display:none">
+          <div class="fr"><label>Consumo Ponta</label>
+            <div class="iw"><input type="number" id="d-ctp" value="28" min="0" oninput="calcDin()"><span class="u">kWh</span></div></div>
+          <div class="fr"><label>Consumo Cheias</label>
+            <div class="iw"><input type="number" id="d-ctc" value="95" min="0" oninput="calcDin()"><span class="u">kWh</span></div></div>
+          <div class="fr"><label>Consumo Vazio</label>
+            <div class="iw"><input type="number" id="d-ctv" value="156" min="0" oninput="calcDin()"><span class="u">kWh</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="meo-box"><div class="mbt">Preços Calculados</div><div class="pg" id="d-tags"></div></div>
+        <div class="results"><div class="res-title">📊 Dinâmica vs Fixa M4e</div><div id="d-tbl"></div></div>
+        <div class="note" style="margin-top:12px;">Tarifa Fixa M4e = serviço M5/M4 + pagamento DDFE</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>Viatel Viseu &nbsp;·&nbsp; Simulador <span>MEO Energia</span> &nbsp;·&nbsp; Tarifário Jan/2025 · Preços s/ IVA</footer>
+
+<script>
+// ── DADOS ─────────────────────────────────────────────────────────────────
+const T={
+  simples:{pot:{1.15:.15,2.3:.20,3.45:.27,4.6:.38,5.75:.47,6.9:.55,10.35:.65,13.8:.80,17.25:.99,20.7:1.15},en:.1699},
+  bi:{pot:{3.45:.27,4.6:.38,5.75:.47,6.9:.55,10.35:.65,13.8:.80,17.25:.99,20.7:1.15},fv:.1999,vz:.1199},
+  tri:{pot:{27.6:1.50,34.5:2.00,41.4:2.50},po:.3499,ch:.1699,vz:.1199},
+  bte:{po:.1492,ch:.1324,vz:.1276,sv:.1135,fts:0}
+};
+const SDISC={M5M4:-.02,M3M2:-.01,Outros:0};
+const PACC={DDFE:0,DDFP:.01,MBFP:.02};
+const TAR={simples:.06,bi:{fv:.083,vz:.0149},tri:{po:.2468,ch:.0508,vz:.0141}};
+const K_MWH=26,FP=.15;
+
+const f2=n=>isNaN(n)?'0.00':n.toFixed(2);
+const f4=n=>isNaN(n)?'0.0000':n.toFixed(4);
+const v=id=>parseFloat(document.getElementById(id).value)||0;
+const disc=(s,p)=>SDISC[s]+PACC[p];
+
+function tag(l,val,u){
+  return`<div class="pi"><div class="pil">${l}</div><div class="piv">${f4(val)} ${u}</div></div>`;
+}
+
+function makeTable(rows,totA,totM){
+  const diff=totM-totA,dCls=diff<=0?'gs':'bs',dSign=diff>0?'+':'';
+  let h=`<table class="cmp"><thead><tr><th>Item</th><th>Atual</th><th>MEO Energia</th><th>Variação</th></tr></thead><tbody>`;
+  rows.forEach(r=>{
+    const d=r.m-r.a;
+    h+=`<tr><td>${r.n}</td><td>${f2(r.a)} €</td><td>${f2(r.m)} €</td><td class="${d<=0?'gs':'bs'}">${d>0?'+':''}${f2(d)} €</td></tr>`;
+  });
+  h+=`<tr class="total"><td>TOTAL</td><td>${f2(totA)} €</td><td>${f2(totM)} €</td><td class="${dCls}">${dSign}${f2(diff)} €</td></tr></tbody></table>`;
+  const p=-diff;
+  if(p>0.001)
+    h+=`<div class="sum-box good"><div class="sl">Poupa por mês com MEO Energia</div><div class="sa">+${f2(p)} €</div><div class="sy">≈ ${f2(p*12)} € poupados por ano</div></div>`;
+  else if(p<-0.001)
+    h+=`<div class="sum-box bad"><div class="sl">MEO Energia fica mais caro por mês</div><div class="sa">${f2(p)} €</div><div class="sy">≈ ${f2(p*12)} € por ano</div></div>`;
+  else
+    h+=`<div class="sum-box good"><div class="sl">Igual ao preço atual</div><div class="sa">0.00 €</div></div>`;
+  return h;
+}
+
+function makeDinTable(rows,tD,tF){
+  const diff=tF-tD;
+  let h=`<table class="cmp"><thead><tr><th>Item</th><th>Dinâmica</th><th>Fixa M4e</th><th>Diferença</th></tr></thead><tbody>`;
+  rows.forEach(r=>{
+    const d=r.fix-r.din;
+    h+=`<tr><td>${r.n}</td><td>${f2(r.din)} €</td><td>${f2(r.fix)} €</td><td class="${d>=0?'gs':'bs'}">${d>0?'+':''}${f2(d)} €</td></tr>`;
+  });
+  h+=`<tr class="total"><td>TOTAL</td><td>${f2(tD)} €</td><td>${f2(tF)} €</td><td class="${diff>=0?'gs':'bs'}">${diff>0?'+':''}${f2(diff)} €</td></tr></tbody></table>`;
+  if(Math.abs(diff)>0.001){
+    const cheaper=diff>0?'Tarifa Dinâmica':'Tarifa Fixa M4e';
+    const cls=diff>0?'good':'bad';
+    h+=`<div class="sum-box ${cls}"><div class="sl">${cheaper} é mais barata por mês</div><div class="sa">${f2(Math.abs(diff))} €</div><div class="sy">≈ ${f2(Math.abs(diff)*12)} € de diferença por ano</div></div>`;
+  }else{
+    h+=`<div class="sum-box good"><div class="sl">Tarifas iguais</div><div class="sa">0.00 €</div></div>`;
+  }
+  return h;
+}
+
+// ── CÁLCULOS ──────────────────────────────────────────────────────────────
+function calcSimples(){
+  const kva=v('s-kva'),svc=document.getElementById('s-svc').value,pag=document.getElementById('s-pag').value;
+  const dias=v('s-dias'),cons=v('s-cons'),potA=v('s-pot-a'),enA=v('s-en-a');
+  const mP=T.simples.pot[kva],mE=T.simples.en+disc(svc,pag);
+  document.getElementById('s-tags').innerHTML=tag('Potência',mP,'€/dia')+tag('Energia',mE,'€/kWh');
+  const aP=potA*dias,aE=enA*cons,mPt=mP*dias,mEt=mE*cons;
+  document.getElementById('s-tbl').innerHTML=makeTable([{n:'Taxa de Potência',a:aP,m:mPt},{n:'Energia',a:aE,m:mEt}],aP+aE,mPt+mEt);
+}
+function calcBi(){
+  const kva=v('b-kva'),svc=document.getElementById('b-svc').value,pag=document.getElementById('b-pag').value;
+  const dias=v('b-dias'),cfv=v('b-fv'),cvz=v('b-vz'),potA=v('b-pot-a'),fvA=v('b-fv-a'),vzA=v('b-vz-a');
+  const mP=T.bi.pot[kva],d=disc(svc,pag),mFV=T.bi.fv+d,mVZ=T.bi.vz+d;
+  document.getElementById('b-tags').innerHTML=tag('Potência',mP,'€/dia')+tag('Fora Vazio',mFV,'€/kWh')+tag('Vazio',mVZ,'€/kWh');
+  const aP=potA*dias,aFV=fvA*cfv,aVZ=vzA*cvz,mPt=mP*dias,mFVt=mFV*cfv,mVZt=mVZ*cvz;
+  document.getElementById('b-tbl').innerHTML=makeTable([{n:'Taxa de Potência',a:aP,m:mPt},{n:'Energia Fora Vazio',a:aFV,m:mFVt},{n:'Energia Vazio',a:aVZ,m:mVZt}],aP+aFV+aVZ,mPt+mFVt+mVZt);
+}
+function calcTri(){
+  const kva=v('t-kva'),svc=document.getElementById('t-svc').value,pag=document.getElementById('t-pag').value;
+  const dias=v('t-dias'),cp=v('t-cp'),cc=v('t-cc'),cv=v('t-cv');
+  const potA=v('t-pot-a'),cpA=v('t-cp-a'),ccA=v('t-cc-a'),cvA=v('t-cv-a');
+  const mP=T.tri.pot[kva],d=disc(svc,pag),mPo=T.tri.po+d,mCh=T.tri.ch+d,mVz=T.tri.vz+d;
+  document.getElementById('t-tags').innerHTML=tag('Potência',mP,'€/dia')+tag('Ponta',mPo,'€/kWh')+tag('Cheias',mCh,'€/kWh')+tag('Vazio',mVz,'€/kWh');
+  const aP=potA*dias,aCp=cpA*cp,aCc=ccA*cc,aCv=cvA*cv;
+  const mPt=mP*dias,mCpt=mPo*cp,mCct=mCh*cc,mCvt=mVz*cv;
+  document.getElementById('t-tbl').innerHTML=makeTable([{n:'Taxa de Potência',a:aP,m:mPt},{n:'Energia Ponta',a:aCp,m:mCpt},{n:'Energia Cheias',a:aCc,m:mCct},{n:'Energia Vazio',a:aCv,m:mCvt}],aP+aCp+aCc+aCv,mPt+mCpt+mCct+mCvt);
+}
+function calcBTE(){
+  const cp=v('bte-cp'),cc=v('bte-cc'),cv=v('bte-cv'),csv=v('bte-csv');
+  const cpA=v('bte-cp-a'),ccA=v('bte-cc-a'),cvA=v('bte-cv-a'),csvA=v('bte-csv-a'),fts=v('bte-fts');
+  const aCp=cpA*cp,aCc=ccA*cc,aCv=cvA*cv,aCSv=csvA*csv;
+  const mCp=T.bte.po*cp,mCc=T.bte.ch*cc,mCv=T.bte.vz*cv,mCSv=T.bte.sv*csv;
+  document.getElementById('bte-tbl').innerHTML=makeTable([{n:'Energia Ponta',a:aCp,m:mCp},{n:'Energia Cheia',a:aCc,m:mCc},{n:'Energia Vazio',a:aCv,m:mCv},{n:'Energia Super Vazio',a:aCSv,m:mCSv},{n:'Fin. Tarifa Social',a:fts,m:T.bte.fts}],aCp+aCc+aCv+aCSv+fts,mCp+mCc+mCv+mCSv+T.bte.fts);
+}
+function calcDin(){
+  const omie=v('d-omie'),tipo=document.getElementById('d-tipo').value;
+  const ok=omie/1000,k=K_MWH/1000,base=(ok+k)*(1+FP);
+  document.getElementById('d-cs-wrap').style.display=tipo==='simples'?'':'none';
+  document.getElementById('d-bi-wrap').style.display=tipo==='bi'?'':'none';
+  document.getElementById('d-tri-wrap').style.display=tipo==='tri'?'':'none';
+  let tagsH='',rows=[],tD=0,tF=0;
+  if(tipo==='simples'){
+    const cs=v('d-cs'),pD=base+TAR.simples,pF=T.simples.en+SDISC.M5M4;
+    tagsH=tag('Dinâmica',pD,'€/kWh')+tag('Fixa M4e',pF,'€/kWh');
+    tD=pD*cs;tF=pF*cs;rows=[{n:'Energia Simples',din:tD,fix:tF}];
+  }else if(tipo==='bi'){
+    const cfv=v('d-cfv'),cvz=v('d-cvz');
+    const pDfv=base+TAR.bi.fv,pDvz=base+TAR.bi.vz,pFfv=T.bi.fv+SDISC.M5M4,pFvz=T.bi.vz+SDISC.M5M4;
+    tagsH=tag('Din. FV',pDfv,'€/kWh')+tag('Din. Vazio',pDvz,'€/kWh')+tag('Fixa FV',pFfv,'€/kWh')+tag('Fixa Vazio',pFvz,'€/kWh');
+    const dFV=pDfv*cfv,dVZ=pDvz*cvz,fFV=pFfv*cfv,fVZ=pFvz*cvz;
+    tD=dFV+dVZ;tF=fFV+fVZ;rows=[{n:'Fora Vazio',din:dFV,fix:fFV},{n:'Vazio',din:dVZ,fix:fVZ}];
+  }else{
+    const ctp=v('d-ctp'),ctc=v('d-ctc'),ctv=v('d-ctv');
+    const pDp=base+TAR.tri.po,pDc=base+TAR.tri.ch,pDv=base+TAR.tri.vz;
+    const pFp=T.tri.po+SDISC.M5M4,pFc=T.tri.ch+SDISC.M5M4,pFv=T.tri.vz+SDISC.M5M4;
+    tagsH=tag('Din. Ponta',pDp,'€/kWh')+tag('Din. Cheias',pDc,'€/kWh')+tag('Din. Vazio',pDv,'€/kWh');
+    const dp=pDp*ctp,dc=pDc*ctc,dv=pDv*ctv,fp=pFp*ctp,fc=pFc*ctc,fv=pFv*ctv;
+    tD=dp+dc+dv;tF=fp+fc+fv;rows=[{n:'Ponta',din:dp,fix:fp},{n:'Cheias',din:dc,fix:fc},{n:'Vazio',din:dv,fix:fv}];
+  }
+  document.getElementById('d-tags').innerHTML=tagsH;
+  document.getElementById('d-tbl').innerHTML=makeDinTable(rows,tD,tF);
+}
+
+function switchTab(name,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+calcSimples();calcBi();calcTri();calcBTE();calcDin();
+</script>
+</body>
+</html>
