@@ -19,6 +19,7 @@
     .brand em{color:var(--accent);font-style:normal}
     .back-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:7px 16px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s}
     .back-btn:hover{background:rgba(0,200,240,.08);border-color:rgba(0,200,240,.3);color:var(--accent)}
+    .header-right{display:flex;align-items:center;gap:10px}
     .theme-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
     .theme-btn:hover{background:rgba(0,200,240,.1);border-color:rgba(0,200,240,.3);color:var(--accent)}
     .hero{text-align:center;padding:32px 24px 16px}
@@ -33,4 +34,132 @@
     .erro{font-size:13px;color:#ff6b6b;margin-top:8px;min-height:20px}
     .resultado{margin-top:24px;display:none;border-top:1px solid var(--border);padding-top:24px}
     .label-r{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700}
-    .digito-row{display:flex
+    .digito-row{display:flex;align-items:center;gap:16px}
+    .digito-val{font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;color:var(--accent);text-shadow:0 0 30px rgba(0,200,240,.4)}
+    .digito-codigo{font-family:'Courier New',monospace;font-size:18px;letter-spacing:4px;color:var(--muted);margin-top:6px}
+    .digito-codigo span{color:var(--accent);font-weight:700}
+    .detail-box{margin-top:20px;background:var(--detail-bg);border:1px solid var(--border);border-radius:12px;padding:16px}
+    .detail-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+    .detail-row:last-child{border-bottom:none}
+    .detail-row span:last-child{font-family:'Courier New',monospace;color:var(--text)}
+    @media(max-width:600px){
+      .header{padding:14px 18px}
+      .brand{font-size:20px;letter-spacing:2px}
+      .wrap{padding:16px 14px 40px}
+      .card{padding:22px 18px}
+      input[type=text]{font-size:20px;letter-spacing:4px}
+      .digito-val{font-size:56px}
+    }
+  
+/* -- TEMA CLARO -- */
+body.light{--bg:#f0f4f8;--surface:#ffffff;--border:rgba(0,0,0,.10);--text:#0d1825;--muted:#5a6e84;background-image:none!important}
+body.light .kpi,body.light .card,body.light .right>.card{background:#fff}
+body.light .kpi-strip{background:rgba(0,0,0,.06)}
+body.light .lbr:hover{background:rgba(0,0,0,.02)}
+body.light .lbr,body.light .wr{border-color:rgba(0,0,0,.05)}
+body.light .lb thead tr{border-color:rgba(0,0,0,.08)}
+body.light .sh::after{background:rgba(0,0,0,.08)}
+body.light .pw,.body.light .wb{background:rgba(0,0,0,.06)}
+body.light .atual-row{background:rgba(0,200,240,.04)}
+body.light .month-nav-bar{background:rgba(255,255,255,.9)}
+body.light .nav-back{border-color:rgba(0,0,0,.15);color:#5a6e84}
+body.light .nav-mbtn.nav-closed{color:rgba(90,110,132,.45)}
+body.light .tba{background:rgba(0,200,240,.04);border-color:rgba(0,200,240,.15)}
+body.light .tbr{background:rgba(255,95,46,.04);border-color:rgba(255,95,46,.15)}
+body.light .card{border-color:rgba(0,0,0,.08)}
+body.light .ct{border-color:rgba(0,0,0,.08)}
+body.light .wr:last-child{border:none}
+.theme-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:'DM Sans',sans-serif;flex-shrink:0}
+.theme-btn:hover{background:rgba(0,200,240,.1);border-color:rgba(0,200,240,.3);color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-dot"></div>
+    <div class="brand">VIA<em>TEL</em> VISEU</div>
+  </div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">&#8592; Dashboard</a>
+    <button class="theme-btn" onclick="toggleTheme()">&#127769; Tema</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-title">Calculadora CVP</div>
+  <div class="hero-sub">12.&#186; Dígito &middot; Validação de Contrato</div>
+</div>
+
+<div class="wrap">
+  <div class="card">
+    <label for="cvp-input">Código CVP (11 dígitos)</label>
+    <input type="text" id="cvp-input" maxlength="11" placeholder="00000000000"
+           autocomplete="off" inputmode="numeric"
+           oninput="calcular(this.value)">
+    <div class="erro" id="erro"></div>
+
+    <div class="resultado" id="resultado">
+      <div class="label-r">12.&#186; Dígito</div>
+      <div class="digito-row">
+        <div class="digito-val" id="digito-val">&#8212;</div>
+        <div>
+          <div class="label-r" style="margin-bottom:4px">Código completo</div>
+          <div class="digito-codigo" id="digito-codigo"></div>
+        </div>
+      </div>
+      <div class="detail-box" id="detail-box"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var PESOS = [2,1,2,1,2,1,2,1,2,1,2];
+
+  function calcular(v) {
+    var err = document.getElementById('erro');
+    var res = document.getElementById('resultado');
+    var digEl = document.getElementById('digito-val');
+    var codEl = document.getElementById('digito-codigo');
+    var det = document.getElementById('detail-box');
+
+    v = v.replace(/\D/g,'');
+    document.getElementById('cvp-input').value = v;
+
+    if (v.length === 0) { err.textContent=''; res.style.display='none'; return; }
+    if (v.length < 11) { err.textContent='Introduz os 11 dígitos completos.'; res.style.display='none'; return; }
+
+    err.textContent = '';
+
+    var digits = v.split('').map(Number);
+    var soma = 0;
+    var produtos = digits.map(function(d,i){ var p = d * PESOS[i]; soma += p; return p; });
+    var digito = (10 - (soma % 10)) % 10;
+
+    digEl.textContent = digito;
+    codEl.innerHTML = v + '<span>' + digito + '</span>';
+
+    var rows = digits.map(function(d,i){
+      return '<div class="detail-row"><span>Pos ' + (i+1) + ': ' + d + ' × ' + PESOS[i] + '</span><span>' + produtos[i] + '</span></div>';
+    }).join('');
+    det.innerHTML = rows
+      + '<div class="detail-row" style="margin-top:6px;padding-top:8px;border-top:1px solid rgba(255,255,255,.08)"><span>Soma total</span><span>' + soma + '</span></div>'
+      + '<div class="detail-row"><span>Soma mod 10</span><span>' + (soma % 10) + '</span></div>'
+      + '<div class="detail-row"><span>12.º dígito</span><span style="color:var(--accent);font-weight:700">' + digito + '</span></div>';
+
+    res.style.display = 'block';
+  }
+
+  function toggleTheme() {
+    var light = document.body.classList.toggle('light');
+    localStorage.setItem('theme', light ? 'light' : 'dark');
+    document.querySelector('.theme-btn').textContent = light ? '☀️ Tema' : '🌙 Tema';
+  }
+
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    document.querySelector('.theme-btn').textContent = '☀️ Tema';
+  }
+</script>
+</body>
+</html>
