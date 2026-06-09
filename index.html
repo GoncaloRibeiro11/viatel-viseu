@@ -201,6 +201,7 @@ body.light .wr:last-child{border:none}
 
 
 
+
 <div class="mpanel" id="panel-202601">
   <div class="cards">
     <a href="202601/internos.html" class="card card-a">
@@ -347,7 +348,7 @@ body.light .wr:last-child{border:none}
 </div></div>
 </div>
 
-<!-- SECÇÃO PRODUTO -->
+<!-- SECÇÃO PRODUTO START -->
 <div id="sec-documentos" class="main-sec" style="display:none">
 <div class="hist-section">
   <div class="hist-label" style="margin-bottom:14px">📦 Produto &amp; Campanhas</div>
@@ -429,6 +430,7 @@ body.light .wr:last-child{border:none}
   </div>
 </div>
 </div>
+<!-- SECÇÃO PRODUTO END -->
 <div class="footer">Viatel Viseu &nbsp;&middot;&nbsp; Coordenação <span>Gonçalo Ribeiro</span> &nbsp;&middot;&nbsp; Actualizado 05/06/2026</div>
 <script>
 /* ── TEMA CLARO/ESCURO ── */
@@ -454,14 +456,4 @@ function showSection(sec){
 function showDoc(tab){
   document.querySelectorAll('.doc-panel').forEach(p=>p.style.display='none');
   document.querySelectorAll('[id^="dtab-"]').forEach(t=>t.classList.remove('active'));
-  document.getElementById('doc-'+tab).style.display='block';
-  document.getElementById('dtab-'+tab).classList.add('active');
-}
-function showMonth(ym){
-  document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.mbtn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+ym).classList.add('active');
-  document.getElementById('btn-'+ym).classList.add('active');
-}
-</script>
-</body></html>
+  docum
