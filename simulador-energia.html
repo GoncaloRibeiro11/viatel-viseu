@@ -231,7 +231,7 @@ body.light .wr:last-child{border:none}
   </div>
   <div class="header-right">
     <a href="index.html" class="back-btn">← Voltar ao Dashboard</a>
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">🌙 Tema</button>
+    <button class="theme-btn vv-theme-btn" id="theme-btn" onclick="toggleTheme()">🌙 Escuro</button>
   </div>
 </div>
 
@@ -661,10 +661,10 @@ calcSimples();calcBi();calcTri();calcBTE();calcDin();
 <script>
 function toggleTheme(){
   var light=document.body.classList.toggle('light');
-  localStorage.setItem('theme',light?'light':'dark');
+  localStorage.setItem('vv_theme',light?'light':'dark');
   document.getElementById('theme-btn').textContent=light?'☀️ Tema':'🌙 Tema';
 }
-if(localStorage.getItem('theme')==='light'){
+if(localStorage.getItem('vv_theme')==='light'){
   document.body.classList.add('light');
   document.addEventListener('DOMContentLoaded',function(){
     var btn=document.getElementById('theme-btn');

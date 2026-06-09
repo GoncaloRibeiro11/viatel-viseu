@@ -20,7 +20,7 @@
     .back-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:7px 16px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s}
     .back-btn:hover{background:rgba(0,200,240,.08);border-color:rgba(0,200,240,.3);color:var(--accent)}
     .header-right{display:flex;align-items:center;gap:10px}
-    .theme-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+    .theme-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s;font-family:'DM Sans',sans-serif}
     .theme-btn:hover{background:rgba(0,200,240,.1);border-color:rgba(0,200,240,.3);color:var(--accent)}
     .hero{text-align:center;padding:32px 24px 16px}
     .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:5px;background:linear-gradient(135deg,#fff 30%,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -82,29 +82,29 @@ body.light .wr:last-child{border:none}
   </div>
   <div class="header-right">
     <a href="index.html" class="back-btn">&#8592; Dashboard</a>
-    <button class="theme-btn" onclick="toggleTheme()">&#127769; Tema</button>
+    <button class="theme-btn vv-theme-btn" id="theme-btn" onclick="toggleTheme()">&#127769;&#65039; Escuro</button>
   </div>
 </header>
 
 <div class="hero">
   <div class="hero-title">Calculadora CVP</div>
-  <div class="hero-sub">12.&#186; Dígito &middot; Validação de Contrato</div>
+  <div class="hero-sub">12.&#186; D&#237;gito &middot; Valida&#231;&#227;o de Contrato</div>
 </div>
 
 <div class="wrap">
   <div class="card">
-    <label for="cvp-input">Código CVP (11 dígitos)</label>
+    <label for="cvp-input">C&#243;digo CVP (11 d&#237;gitos)</label>
     <input type="text" id="cvp-input" maxlength="11" placeholder="00000000000"
            autocomplete="off" inputmode="numeric"
            oninput="calcular(this.value)">
     <div class="erro" id="erro"></div>
 
     <div class="resultado" id="resultado">
-      <div class="label-r">12.&#186; Dígito</div>
+      <div class="label-r">12.&#186; D&#237;gito</div>
       <div class="digito-row">
         <div class="digito-val" id="digito-val">&#8212;</div>
         <div>
-          <div class="label-r" style="margin-bottom:4px">Código completo</div>
+          <div class="label-r" style="margin-bottom:4px">C&#243;digo completo</div>
           <div class="digito-codigo" id="digito-codigo"></div>
         </div>
       </div>
@@ -126,40 +126,57 @@ body.light .wr:last-child{border:none}
     v = v.replace(/\D/g,'');
     document.getElementById('cvp-input').value = v;
 
-    if (v.length === 0) { err.textContent=''; res.style.display='none'; return; }
-    if (v.length < 11) { err.textContent='Introduz os 11 dígitos completos.'; res.style.display='none'; return; }
+    if (v.length === 0) {
+      err.textContent = '';
+      res.style.display = 'none';
+      return;
+    }
+    if (v.length < 11) {
+      err.textContent = 'Introduza os 11 dígitos do CVP';
+      res.style.display = 'none';
+      return;
+    }
 
     err.textContent = '';
+    res.style.display = 'block';
 
-    var digits = v.split('').map(Number);
     var soma = 0;
-    var produtos = digits.map(function(d,i){ var p = d * PESOS[i]; soma += p; return p; });
+    var rows = '';
+    for (var i = 0; i < 11; i++) {
+      var d = parseInt(v[i], 10);
+      var p = PESOS[i];
+      var prod = d * p;
+      soma += prod;
+      rows += '<div class="detail-row"><span>Pos ' + (i+1) + ' &times; ' + p + '</span><span>' + d + ' &times; ' + p + ' = ' + prod + '</span></div>';
+    }
     var digito = (10 - (soma % 10)) % 10;
 
+    rows += '<div class="detail-row"><span>Soma total</span><span>' + soma + '</span></div>';
+    rows += '<div class="detail-row"><span>Módulo 10</span><span>' + (soma % 10) + '</span></div>';
+    rows += '<div class="detail-row"><span>12.º Dígito</span><span>' + digito + '</span></div>';
+
     digEl.textContent = digito;
-    codEl.innerHTML = v + '<span>' + digito + '</span>';
-
-    var rows = digits.map(function(d,i){
-      return '<div class="detail-row"><span>Pos ' + (i+1) + ': ' + d + ' × ' + PESOS[i] + '</span><span>' + produtos[i] + '</span></div>';
-    }).join('');
-    det.innerHTML = rows
-      + '<div class="detail-row" style="margin-top:6px;padding-top:8px;border-top:1px solid rgba(255,255,255,.08)"><span>Soma total</span><span>' + soma + '</span></div>'
-      + '<div class="detail-row"><span>Soma mod 10</span><span>' + (soma % 10) + '</span></div>'
-      + '<div class="detail-row"><span>12.º dígito</span><span style="color:var(--accent);font-weight:700">' + digito + '</span></div>';
-
-    res.style.display = 'block';
+    var cod = v + digito;
+    codEl.innerHTML = cod.slice(0,11) + '<span>' + digito + '</span>';
+    det.innerHTML = rows;
   }
 
   function toggleTheme() {
-    var light = document.body.classList.toggle('light');
-    localStorage.setItem('theme', light ? 'light' : 'dark');
-    document.querySelector('.theme-btn').textContent = light ? '☀️ Tema' : '🌙 Tema';
+    var l = document.body.classList.toggle('light');
+    localStorage.setItem('vv_theme', l ? 'light' : 'dark');
+    var btn = document.getElementById('theme-btn');
+    if (btn) btn.innerHTML = l ? '&#9728;&#65039; Claro' : '&#127769;&#65039; Escuro';
   }
 
-  if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light');
-    document.querySelector('.theme-btn').textContent = '☀️ Tema';
-  }
+  (function() {
+    if (localStorage.getItem('vv_theme') === 'light') {
+      document.body.classList.add('light');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('theme-btn');
+        if (btn) btn.innerHTML = '&#9728;&#65039; Claro';
+      });
+    }
+  })();
 </script>
 </body>
 </html>
