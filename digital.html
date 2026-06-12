@@ -31,7 +31,7 @@ tbody tr:hover{background:rgba(255,255,255,.025)}
 
 @media print {
   body { background: #fff !important; color: #111 !important; padding-bottom: 0 !important; }
-  .filter-bar, .btn-pdf { display: none !important; }
+  .filter-bar, .btn-pdf, .btn-back { display: none !important; }
   .page-header { padding: 16px 20px 0 !important; }
   .page-title { color: #1a1a2e !important; font-size: 20px !important; }
   .page-sub { color: #555 !important; }
@@ -41,7 +41,12 @@ tbody tr:hover{background:rgba(255,255,255,.025)}
   .kc-v { color: #1a1a2e !important; }
   .kc-bar { background: #e8ecf2 !important; }
   .content { gap: 8px !important; }
-  .team-block { display: block !important; border-color: #dde3ec !important; background: #fff !important; break-inside: avoid; }
+  .team-block { display: none !important; }
+  body[data-pf="all"] .team-block { display: block !important; border-color: #dde3ec !important; background: #fff !important; break-inside: avoid; }
+  body[data-pf="alvaro"] .team-block[data-team="alvaro"] { display: block !important; border-color: #dde3ec !important; background: #fff !important; break-inside: avoid; }
+  body[data-pf="raquel"] .team-block[data-team="raquel"] { display: block !important; border-color: #dde3ec !important; background: #fff !important; break-inside: avoid; }
+  body[data-pf="rafael"] .team-block[data-team="rafael"] { display: block !important; border-color: #dde3ec !important; background: #fff !important; break-inside: avoid; }
+  body[data-pf="monica"] .team-block[data-team="monica"] { display: block !important; border-color: #dde3ec !important; background: #fff !important; break-inside: avoid; }
   .seller-block { break-inside: avoid; }
   .seller-block > div:first-child { background: #f5f7fa !important; }
   thead tr { background: #f0f3f7 !important; }
@@ -87,6 +92,20 @@ body.light .wr:last-child{border:none}
     }
   }
 })();
+var currentFilter='all';
+function filterTeam(btn,team){
+  currentFilter=team;
+  document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.team-block').forEach(function(el){
+    el.style.display=(team==='all'||el.dataset.team===team)?'block':'none';
+  });
+}
+function printPDF(){
+  document.body.setAttribute('data-pf',currentFilter);
+  window.print();
+  document.body.removeAttribute('data-pf');
+}
 </script>
 </head><body>
 <div class="page-header">
@@ -98,8 +117,9 @@ body.light .wr:last-child{border:none}
   <button class="fbtn active" data-filter="all" onclick="filterTeam(this,'all')">🌐 Todas</button><button class="fbtn" data-filter="alvaro" onclick="filterTeam(this,'alvaro')">⚡ Álvaro Pedro <span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#00e676;margin-left:3px">92.3%</span></button><button class="fbtn" data-filter="raquel" onclick="filterTeam(this,'raquel')">🔥 Raquel Bernardo <span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#00e676;margin-left:3px">100.0%</span></button><button class="fbtn" data-filter="rafael" onclick="filterTeam(this,'rafael')">🚀 Rafael Peixoto <span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#00e676;margin-left:3px">100.0%</span></button><button class="fbtn" data-filter="monica" onclick="filterTeam(this,'monica')">🤝 Mónica Rodrigues <span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#f44336;margin-left:3px">54.5%</span></button>
 </div>
 
-<div style="max-width:960px;margin:12px auto 0;padding:0 20px;display:flex;justify-content:flex-end">
-  <button class="btn-pdf" onclick="window.print()" style="background:rgba(0,200,240,.1);border:1px solid rgba(0,200,240,.4);border-radius:8px;padding:8px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#00c8f0;cursor:pointer;display:flex;align-items:center;gap:6px">
+<div style="max-width:960px;margin:12px auto 0;padding:0 20px;display:flex;justify-content:space-between;align-items:center">
+  <a href="index.html" class="btn-back" style="text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px">← Dashboard</a>
+  <button class="btn-pdf" onclick="printPDF()" style="background:rgba(0,200,240,.1);border:1px solid rgba(0,200,240,.4);border-radius:8px;padding:8px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#00c8f0;cursor:pointer;display:flex;align-items:center;gap:6px">
     🖨️ Exportar PDF
   </button>
 </div>
