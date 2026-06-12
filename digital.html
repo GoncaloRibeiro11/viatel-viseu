@@ -87,6 +87,9 @@ function printPDF(){
   window.print();
   document.body.removeAttribute('data-pf');
 }
+document.addEventListener('DOMContentLoaded',function(){
+  filterTeam(document.querySelector('.fbtn[data-filter="all"]'),'all');
+});
 </script>
 </head><body>
 <div class="page-header">
