@@ -99,7 +99,7 @@ body.light .wr:last-child{border:none}
     var ok=false;
     while(!ok){
       var p=prompt('🔒 Introduz a password para aceder:','');
-      if(p===null){document.body.innerHTML='<div style="height:100vh;display:flex;align-items:center;justify-content:center;font-family:sans-serif;color:#6b7e96">Acesso negado.</div>';return;}
+      if(p===null){document.documentElement.innerHTML='<div style="height:100vh;display:flex;align-items:center;justify-content:center;font-family:sans-serif;color:#6b7e96">Acesso negado.</div>';return;}
       if(p===P){ok=true;sessionStorage.setItem(K,'1');}
       else alert('Password incorrecta. Tenta novamente.');
     }
