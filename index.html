@@ -178,10 +178,10 @@ body.light .wr:last-child{border:none}
 <div id="tab-nav" style="max-width:860px;margin:0 auto;padding:0 24px 8px;display:flex;gap:10px">
   <button class="main-tab active" onclick="showSection('resultados')" id="mtab-resultados">📊 Resultados</button>
   <button class="main-tab" onclick="showSection('documentos')" id="mtab-documentos">📦 Produto</button>
-  <a href="ranking-anual.html" class="main-tab" style="text-decoration:none">🏅 Ranking Anual</a>
+  <button class="main-tab" onclick="showSection('ranking')" id="mtab-ranking">🏅 Ranking Anual</button>
   <a href="simulador-energia.html" class="main-tab" style="text-decoration:none">⚡ Simulador Energia</a>
   <a href="calculadora-cvp.html" class="main-tab" style="text-decoration:none">🔢 Calculadora CVP</a>
-  <a href="digital.html" class="main-tab" style="text-decoration:none">📱 Taxa Digital</a>
+  <button class="main-tab" onclick="showSection('digital')" id="mtab-digital">📱 Taxa Digital</button>
 </div>
 
 <!-- SECÇÃO RESULTADOS -->
@@ -445,6 +445,18 @@ body.light .wr:last-child{border:none}
 </div>
 </div>
 <!-- SECÇÃO PRODUTO END -->
+<!-- SECÇÃO RANKING ANUAL -->
+<div id="sec-ranking" class="main-sec" style="display:none">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px 40px">
+    <iframe src="ranking-anual.html" title="Ranking Anual" style="width:100%;height:calc(100vh - 200px);min-height:640px;border:1px solid var(--border);border-radius:16px;background:transparent" loading="lazy"></iframe>
+  </div>
+</div>
+<!-- SECÇÃO TAXA DIGITAL -->
+<div id="sec-digital" class="main-sec" style="display:none">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px 40px">
+    <iframe src="digital.html" title="Taxa Digital" style="width:100%;height:calc(100vh - 200px);min-height:640px;border:1px solid var(--border);border-radius:16px;background:transparent" loading="lazy"></iframe>
+  </div>
+</div>
 <div class="footer">Viatel Viseu &nbsp;&middot;&nbsp; Coordenação <span>Gonçalo Ribeiro</span> &nbsp;&middot;&nbsp; Actualizado 05/06/2026</div>
 <script>
 /* ── TEMA CLARO/ESCURO ── */
@@ -463,21 +475,4 @@ function toggleTheme(){
 /* ── NAVEGAÇÃO PRINCIPAL ── */
 function showSection(sec){
   document.querySelectorAll('.main-sec').forEach(s=>s.style.display='none');
-  document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('sec-'+sec).style.display='block';
-  document.getElementById('mtab-'+sec).classList.add('active');
-}
-function showDoc(tab){
-  document.querySelectorAll('.doc-panel').forEach(p=>p.style.display='none');
-  document.querySelectorAll('[id^="dtab-"]').forEach(t=>t.classList.remove('active'));
-  document.getElementById('doc-'+tab).style.display='block';
-  document.getElementById('dtab-'+tab).classList.add('active');
-}
-function showMonth(ym){
-  document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.mbtn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+ym).classList.add('active');
-  document.getElementById('btn-'+ym).classList.add('active');
-}
-</script>
-</body></html>
+  document.querySelectorAll('.main-tab').forEach(t=>t.classList.re
