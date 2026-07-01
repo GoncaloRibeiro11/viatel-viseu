@@ -10,6 +10,38 @@
 .fbtn:hover{background:rgba(0,200,240,.1);border-color:rgba(0,200,240,.3);color:var(--accent)}
 .fbtn.clr{color:#ff6b6b;border-color:rgba(255,68,68,.3);background:rgba(255,68,68,.08)}
 
+/* ── MONTH NAV BAR ── */
+.month-nav-bar{display:flex;align-items:center;padding:8px 32px;background:rgba(255,255,255,.015);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.month-nav-bar::-webkit-scrollbar{height:3px}.month-nav-bar::-webkit-scrollbar-thumb{background:rgba(0,200,240,.3);border-radius:2px}
+.nav-back{flex-shrink:0;background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:5px 14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s;margin-right:16px;white-space:nowrap}
+.nav-back:hover{border-color:rgba(0,200,240,.4);color:var(--accent)}
+.nav-sep{width:1px;height:18px;background:var(--border);flex-shrink:0;margin-right:12px}
+.nav-mbtn{flex-shrink:0;background:transparent;border:1px solid transparent;border-radius:8px;padding:5px 12px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1.5px;color:var(--muted);text-decoration:none;display:inline-block;transition:all .15s;white-space:nowrap}
+.nav-mbtn:hover{background:rgba(0,200,240,.08);border-color:rgba(0,200,240,.3);color:var(--accent)}
+.nav-mbtn.nav-active{background:rgba(0,200,240,.12);border-color:rgba(0,200,240,.5);color:var(--accent)}
+.nav-mbtn.nav-closed{color:rgba(154,175,196,.45)}
+.nav-mbtn.nav-closed:hover{color:var(--muted);background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
+
+/* ── TEMA CLARO ── */
+body.light{--bg:#f0f4f8;--surface:#ffffff;--border:rgba(0,0,0,.10);--text:#0d1825;--muted:#5a6e84;background-image:none!important}
+body.light .kpi{background:#fff}
+body.light .card{background:#fff}
+body.light .lbr:hover{background:rgba(0,0,0,.02)}
+body.light .lbr{border-color:rgba(0,0,0,.05)}
+body.light .lb thead tr{border-color:rgba(0,0,0,.08)}
+body.light .sh::after{background:rgba(0,0,0,.08)}
+body.light .pw,.body.light .wb{background:rgba(0,0,0,.06)}
+body.light .kpi-strip{background:rgba(0,0,0,.06)}
+body.light .atual-row{background:rgba(0,200,240,.04)}
+body.light .wr{border-color:rgba(0,0,0,.05)}
+body.light .wt thead th{color:#5a6e84}
+body.light .month-nav-bar{background:rgba(255,255,255,.8)}
+body.light .nav-back{border-color:rgba(0,0,0,.15);color:#5a6e84}
+body.light .nav-back:hover{color:var(--accent)}
+body.light .nav-mbtn.nav-closed{color:rgba(90,110,132,.45)}
+.theme-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:'DM Sans',sans-serif;flex-shrink:0}
+.theme-btn:hover{background:rgba(0,200,240,.1);border-color:rgba(0,200,240,.3);color:var(--accent)}
+
 /* -- TEMA CLARO -- */
 body.light{--bg:#f0f4f8;--surface:#ffffff;--border:rgba(0,0,0,.10);--text:#0d1825;--muted:#5a6e84;background-image:none!important}
 body.light .kpi,body.light .card,body.light .right>.card{background:#fff}
@@ -31,7 +63,7 @@ body.light .wr:last-child{border:none}
 .theme-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:'DM Sans',sans-serif;flex-shrink:0}
 .theme-btn:hover{background:rgba(0,200,240,.1);border-color:rgba(0,200,240,.3);color:var(--accent)}
 </style></head><body>
-<!-- VV-NAV -->
+<div class="month-nav-bar"><a href="../index.html" class="nav-back">← Início</a><div class="nav-sep"></div><a href="../202601/origem.html" class="nav-mbtn nav-closed">✓ Janeiro 2026</a><a href="../202602/origem.html" class="nav-mbtn nav-closed">✓ Fevereiro 2026</a><a href="../202603/origem.html" class="nav-mbtn nav-closed">✓ Março 2026</a><a href="../202604/origem.html" class="nav-mbtn nav-closed">✓ Abril 2026</a><a href="../202605/origem.html" class="nav-mbtn nav-closed">✓ Maio 2026</a><a href="../202606/origem.html" class="nav-mbtn nav-active">Junho 2026</a></div>
 <div class="header">
   <div class="logo"><div class="logo-dot"></div><div class="brand">VIATEL <em>VISEU</em></div></div>
   <div class="h-center"><div class="h-title">ORIGEM DOS INSTALADOS</div><div class="h-sub">Instalações MEOFIBRA · Junho 2026</div></div>
@@ -77,8 +109,10 @@ function setThisWeek(){var n=new Date(),dy=n.getDay(),diff=dy===0?6:dy-1;var thi
 function setMonth(){var n=new Date(),y=n.getFullYear(),m=n.getMonth();document.getElementById("dt-from").value=localDateStr(new Date(y,m,1));document.getElementById("dt-to").value=localDateStr(new Date(y,m+1,0));applyFilter();}
 </script>
 <div class="footer">Viatel Viseu</div>
+
 <script>
-function toggleTheme(){var l=document.body.classList.toggle('light');localStorage.setItem('vv_theme',l?'light':'dark');document.querySelectorAll('.vv-theme-btn').forEach(function(b){b.innerHTML=l?'&#9728;&#65039; Claro':'&#127769;&#65039; Escuro';});}
-(function(){if(localStorage.getItem('vv_theme')==='light'){document.body.classList.add('light');document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.vv-theme-btn').forEach(function(b){b.innerHTML='&#9728;&#65039; Claro';});});}})();
+/* ── TEMA ── */
+function toggleTheme(){var l=document.body.classList.toggle('light');localStorage.setItem('vv_theme',l?'light':'dark');var b=document.getElementById('vv-theme-btn');if(b)b.innerHTML=l?'&#9728;&#65039; Claro':'&#127769;&#65039; Escuro';}
+(function(){if(localStorage.getItem('vv_theme')==='light'){document.body.classList.add('light');var b=document.getElementById('vv-theme-btn');if(b)b.innerHTML='&#9728;&#65039; Claro';}})();
 </script>
 </body></html>
